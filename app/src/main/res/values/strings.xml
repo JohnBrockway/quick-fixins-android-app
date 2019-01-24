@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Quick Fixins</string>
+    <string name="random_recipe_button_label">Random Recipe</string>
+    <string name="saved_recipes_button_label">My Saved Recipes</string>
+    <string name="backend_base_url">http://quick-fixins.glitch.me/</string>
+    <string name="backend_random_id_path">v1/getRandomValidID</string>
+    <string name="backend_upcheck_path">v1/up</string>
+    <string name="backend_get_by_id_path">v1/getRecipeById</string>
+    <string name="recipe_id_intent_message">com.ethosgames.quickfixins.RECIPE_ID_MESSAGE</string>
+    <string name="home_icon_desc">Home Icon</string>
+    <string name="add_icon_desc">Plus Icon</string>
+    <string name="list_icon_desc">List Icon</string>
+    <string name="next_icon_desc">Forward Arrow Icon</string>
+    <string name="recipe_image_desc">Image for the recipe</string>
 </resources>
