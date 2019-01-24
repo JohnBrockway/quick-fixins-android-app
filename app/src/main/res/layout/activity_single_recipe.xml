@@ -52,7 +52,7 @@
                 app:srcCompat="@drawable/list_bulleted" />
 
             <ImageButton
-                android:id="@+id/toolbarHomeNext"
+                android:id="@+id/toolbarNext"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/toolbar_icon_height"
                 android:layout_weight="1"
@@ -75,27 +75,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="40dp"
-            android:paddingTop="20dp"
-            android:paddingRight="40dp">
+            android:paddingLeft="@dimen/recipe_page_side_margins"
+            android:paddingRight="@dimen/recipe_page_side_margins">
 
             <ImageView
                 android:id="@+id/recipePrimaryImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/recipe_info_elements_margin"
+                android:layout_marginBottom="@dimen/recipe_info_elements_margin"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/recipe_image_desc"
                 app:srcCompat="@drawable/image_not_found" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recipeSteps"
+            <TextView
+                android:id="@+id/ingredientsHeading"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:text="@string/ingredients_heading"
+                android:textColor="@color/colorText"
+                android:textSize="24sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recipeIngredients"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/recipe_info_elements_margin"
+                android:layout_marginBottom="@dimen/recipe_info_elements_margin" >
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/stepsHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/steps_heading"
+                android:textColor="@color/colorText"
+                android:textSize="24sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recipeSteps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/recipe_info_elements_margin"
+                android:layout_marginBottom="@dimen/recipe_info_elements_margin" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
