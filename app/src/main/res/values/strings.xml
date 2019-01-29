@@ -14,4 +14,5 @@
     <string name="recipe_image_desc">Image for the recipe</string>
     <string name="ingredients_heading">Ingredients</string>
     <string name="steps_heading">Steps</string>
+    <string name="saved_recipes_file_path">savedRecipes.txt</string>
 </resources>

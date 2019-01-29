@@ -1,13 +1,12 @@
 package com.ethosgames.quickfixins;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,6 +19,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 public class SingleRecipeActivity extends AppCompatActivity {
     private RecyclerView stepsRecyclerView;
     private RecyclerView ingredientsRecyclerView;
@@ -28,6 +36,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager stepsLayoutManager;
     private RecyclerView.LayoutManager ingredientsLayoutManager;
 
+    private Recipe recipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +45,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
 
         // TODO add loading indicator to layout, switch to actual layout on response
         int recipeId = getIntent().getIntExtra(
-                getApplicationContext().getString(R.string.recipe_id_intent_message),
-                1);
+                getString(R.string.recipe_id_intent_message), 1);
 
         stepsLayoutManager = new LinearLayoutManager(this);
         ingredientsLayoutManager= new LinearLayoutManager(this);
@@ -53,23 +61,20 @@ public class SingleRecipeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONObject responseJson = new JSONObject(response);
-                            Log.d("TEST", responseJson.toString());
+                            recipe = new Recipe(response);
                             stepsRecyclerView = findViewById(R.id.recipeSteps);
                             stepsRecyclerView.setHasFixedSize(true);
                             stepsRecyclerView.setLayoutManager(stepsLayoutManager);
-                            JSONArray steps = responseJson.getJSONArray("Steps");
-                            stepsAdapter = new StepsAdapter(convertJsonArrayToStringArray(steps));
+                            stepsAdapter = new StepsAdapter(recipe.steps);
                             stepsRecyclerView.setAdapter(stepsAdapter);
 
                             ingredientsRecyclerView = findViewById(R.id.recipeIngredients);
                             ingredientsRecyclerView.setHasFixedSize(true);
                             ingredientsRecyclerView.setLayoutManager(ingredientsLayoutManager);
-                            JSONArray ingredients = responseJson.getJSONArray("Ingredients");
-                            ingredientsAdapter = new IngredientsAdapter(convertJsonArrayToStringArray(ingredients));
+                            ingredientsAdapter = new IngredientsAdapter(recipe.ingredients);
                             ingredientsRecyclerView.setAdapter(ingredientsAdapter);
                         } catch (Exception e ) {
-                            Log.d("TEST", "exception");
+                            e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -79,11 +84,33 @@ public class SingleRecipeActivity extends AppCompatActivity {
         queue.add(getRecipeRequest);
     }
 
-    private String[] convertJsonArrayToStringArray(JSONArray jsonArray) throws JSONException {
-        String[] stringArray = new String[jsonArray.length()];
-        for (int i = 0 ; i < stringArray.length ; i++) {
-            stringArray[i] = jsonArray.getString(i);
+    public void homeButtonPressed(View view) {
+        startActivity(new Intent(this, SplashPageActivity.class));
+    }
+
+    public void saveRecipe(View view) {
+        File savedRecipesFile = new File(getFilesDir(), getString(R.string.saved_recipes_file_path));
+        String idToAppend = "";
+        if (!savedRecipesFile.exists()) {
+            try {
+                savedRecipesFile.createNewFile();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        return stringArray;
+        else if (savedRecipesFile.length() != 0) {
+            idToAppend += ",";
+        }
+        
+        idToAppend += String.valueOf(recipe.id);
+        try {
+            FileOutputStream output = openFileOutput(savedRecipesFile.getName(), MODE_APPEND);
+            output.write(idToAppend.getBytes());
+            output.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

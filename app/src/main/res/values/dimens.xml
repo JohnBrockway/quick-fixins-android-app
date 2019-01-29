@@ -6,4 +6,6 @@
     <dimen name="recipe_page_side_margins">40dp</dimen>
     <dimen name="padding_between_ingredients">4dp</dimen>
     <dimen name="padding_between_steps">20dp</dimen>
+    <dimen name="padding_between_fabs">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

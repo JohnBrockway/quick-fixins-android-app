@@ -24,41 +24,42 @@
             <ImageButton
                 android:id="@+id/toolbarHome"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/toolbar_icon_height"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark"
                 android:contentDescription="@string/home_icon_desc"
+                android:onClick="homeButtonPressed"
                 android:scaleType="fitCenter"
+                android:theme="@style/HeaderButton"
                 app:srcCompat="@drawable/icon_home" />
 
             <ImageButton
                 android:id="@+id/toolbarAdd"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/toolbar_icon_height"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark"
                 android:contentDescription="@string/add_icon_desc"
                 android:scaleType="fitCenter"
+                android:theme="@style/HeaderButton"
                 app:srcCompat="@drawable/add" />
 
             <ImageButton
                 android:id="@+id/toolbarList"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/toolbar_icon_height"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark"
                 android:contentDescription="@string/list_icon_desc"
                 android:scaleType="fitCenter"
+                android:theme="@style/HeaderButton"
                 app:srcCompat="@drawable/list_bulleted" />
 
             <ImageButton
                 android:id="@+id/toolbarNext"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/toolbar_icon_height"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark"
                 android:contentDescription="@string/next_icon_desc"
                 android:scaleType="fitCenter"
+                android:theme="@style/HeaderButton"
                 app:srcCompat="@drawable/arrow_forward" />
 
         </LinearLayout>
@@ -67,6 +68,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -79,7 +81,7 @@
             android:paddingRight="@dimen/recipe_page_side_margins">
 
             <ImageView
-                android:id="@+id/recipePrimaryImage"
+                android:id="@+id/recipePrimaryImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/recipe_info_elements_margin"
@@ -101,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/recipe_info_elements_margin"
-                android:layout_marginBottom="@dimen/recipe_info_elements_margin" >
+                android:layout_marginBottom="@dimen/recipe_info_elements_margin">
 
             </android.support.v7.widget.RecyclerView>
 
@@ -122,5 +124,39 @@
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabRemix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:theme="@style/SecondaryFAB"
+        app:layout_anchor="@+id/fabPlaceholder"
+        app:layout_anchorGravity="top"
+        app:srcCompat="@drawable/open_in_new" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabPlaceholder"
+        android:layout_width="@dimen/padding_between_fabs"
+        android:layout_height="@dimen/padding_between_fabs"
+        android:layout_gravity="top|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="false"
+        android:visibility="invisible"
+        app:layout_anchor="@+id/fabLike"
+        app:layout_anchorGravity="top" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:onClick="saveRecipe"
+        app:layout_anchor="@+id/nestedScrollView"
+        app:layout_anchorGravity="end|bottom"
+        app:srcCompat="@drawable/favorite" />
 
 </android.support.design.widget.CoordinatorLayout>

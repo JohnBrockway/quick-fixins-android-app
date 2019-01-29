@@ -8,5 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
     </style>
+    <style name="HeaderButton" parent="AppTheme">
+        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+    </style>
+    <style name="SecondaryFAB" parent="AppTheme">
+        <item name="colorAccent">@android:color/white</item>
+    </style>
 
 </resources>
