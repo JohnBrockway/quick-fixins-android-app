@@ -6,6 +6,8 @@
     <string name="backend_random_id_path">v1/getRandomValidID</string>
     <string name="backend_upcheck_path">v1/up</string>
     <string name="backend_get_by_id_path">v1/getRecipeById</string>
+    <string name="backend_rate_recipe_ease_path">v1/rateRecipeEase</string>
+    <string name="backend_rate_recipe_taste_path">v1/rateRecipeTaste</string>
     <string name="recipe_id_intent_message">com.ethosgames.quickfixins.RECIPE_ID_MESSAGE</string>
     <string name="home_icon_desc">Home Icon</string>
     <string name="add_icon_desc">Plus Icon</string>
@@ -15,4 +17,11 @@
     <string name="ingredients_heading">Ingredients</string>
     <string name="steps_heading">Steps</string>
     <string name="saved_recipes_file_path">savedRecipes.txt</string>
+    <string name="rate_recipe_button_label">Made it? Rate it!</string>
+    <string name="ease_rating_text">Easiness of recipe</string>
+    <string name="taste_rating_text">Tastiness of recipe</string>
+    <string name="rating_dialog_submit_button_label">Submit Rating</string>
+    <string name="rating_dialog_cancel_button_label">Cancel</string>
+    <string name="ease_rating_intent_tag">easeRating</string>
+    <string name="taste_rating_intent_tag">tasteRating</string>
 </resources>

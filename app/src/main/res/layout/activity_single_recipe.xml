@@ -9,14 +9,13 @@
     tools:context=".SingleRecipeActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/toolbarHeight"
-            android:background="@color/colorPrimaryDark"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_scrollFlags="scroll|enterAlways">
@@ -30,7 +29,7 @@
                 android:onClick="homeButtonPressed"
                 android:scaleType="fitCenter"
                 android:theme="@style/HeaderButton"
-                app:srcCompat="@drawable/icon_home" />
+                app:srcCompat="@drawable/home" />
 
             <ImageButton
                 android:id="@+id/toolbarAdd"
@@ -64,7 +63,6 @@
 
         </LinearLayout>
 
-
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -76,6 +74,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/recipe_info_elements_margin"
+            android:layout_marginBottom="@dimen/recipe_info_elements_margin"
             android:orientation="vertical"
             android:paddingLeft="@dimen/recipe_page_side_margins"
             android:paddingRight="@dimen/recipe_page_side_margins">
@@ -84,7 +84,6 @@
                 android:id="@+id/recipePrimaryImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/recipe_info_elements_margin"
                 android:layout_marginBottom="@dimen/recipe_info_elements_margin"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/recipe_image_desc"
@@ -122,6 +121,15 @@
                 android:layout_marginTop="@dimen/recipe_info_elements_margin"
                 android:layout_marginBottom="@dimen/recipe_info_elements_margin" />
 
+            <android.support.design.button.MaterialButton
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_gravity="center"
+                android:gravity="center|center_horizontal|center_vertical"
+                android:onClick="openRatingDialog"
+                android:text="@string/rate_recipe_button_label"
+                android:translationZ="2dp" />
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
@@ -154,7 +162,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
-        android:onClick="saveRecipe"
+        android:onClick="toggleSavedStatus"
         app:layout_anchor="@+id/nestedScrollView"
         app:layout_anchorGravity="end|bottom"
         app:srcCompat="@drawable/favorite" />

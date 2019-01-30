@@ -8,8 +8,8 @@
     tools:context=".SplashPageActivity">
 
     <android.support.design.button.MaterialButton
-        android:layout_width="230dp"
-        android:layout_height="68dp"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
         android:backgroundTint="@color/colorAccent"
         android:onClick="goToRandomActivity"
         android:text="@string/random_recipe_button_label"
@@ -21,8 +21,8 @@
         app:layout_constraintVertical_bias="0.7" />
 
     <android.support.design.button.MaterialButton
-        android:layout_width="230dp"
-        android:layout_height="68dp"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
         android:backgroundTint="@color/colorAccent"
         android:text="@string/saved_recipes_button_label"
         android:translationZ="2dp"

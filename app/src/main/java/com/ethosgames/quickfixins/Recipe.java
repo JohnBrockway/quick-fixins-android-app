@@ -14,9 +14,8 @@ public class Recipe {
     public double tasteRating;
     public int tasteRatingCount;
 
-    public Recipe(String jsonRepresentation) {
+    public Recipe(JSONObject jsonObject) {
         try {
-            JSONObject jsonObject = new JSONObject(jsonRepresentation);
             id = jsonObject.getInt("ID");
             name = jsonObject.getString("Name");
             JSONArray stepsJson = jsonObject.getJSONArray("Steps");

@@ -1,0 +1,183 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/dialog_outer_padding"
+    tools:context=".RateRecipeDialogActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:layout_weight="1"
+        android:text="@string/ease_rating_text"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/easeRating1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="ratingClicked"
+            android:padding="@dimen/dialog_inner_padding"
+            app:srcCompat="@drawable/sentiment_very_dissatisfied" />
+
+        <ImageButton
+            android:id="@+id/easeRating2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="ratingClicked"
+            android:padding="@dimen/dialog_inner_padding"
+            app:srcCompat="@drawable/sentiment_dissatisfied" />
+
+        <ImageButton
+            android:id="@+id/easeRating3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="ratingClicked"
+            android:padding="@dimen/dialog_inner_padding"
+            app:srcCompat="@drawable/sentiment_neutral" />
+
+        <ImageButton
+            android:id="@+id/easeRating4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="ratingClicked"
+            android:padding="@dimen/dialog_inner_padding"
+            app:srcCompat="@drawable/sentiment_satisfied" />
+
+        <ImageButton
+            android:id="@+id/easeRating5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="ratingClicked"
+            android:padding="@dimen/dialog_inner_padding"
+            app:srcCompat="@drawable/sentiment_very_satisfied" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:layout_weight="1"
+        android:text="@string/taste_rating_text"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/tasteRating1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="ratingClicked"
+            android:padding="@dimen/dialog_inner_padding"
+            app:srcCompat="@drawable/sentiment_very_dissatisfied" />
+
+        <ImageButton
+            android:id="@+id/tasteRating2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="ratingClicked"
+            android:padding="@dimen/dialog_inner_padding"
+            app:srcCompat="@drawable/sentiment_dissatisfied" />
+
+        <ImageButton
+            android:id="@+id/tasteRating3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="ratingClicked"
+            android:padding="@dimen/dialog_inner_padding"
+            app:srcCompat="@drawable/sentiment_neutral" />
+
+        <ImageButton
+            android:id="@+id/tasteRating4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="ratingClicked"
+            android:padding="@dimen/dialog_inner_padding"
+            app:srcCompat="@drawable/sentiment_satisfied" />
+
+        <ImageButton
+            android:id="@+id/tasteRating5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="ratingClicked"
+            android:padding="@dimen/dialog_inner_padding"
+            app:srcCompat="@drawable/sentiment_very_satisfied" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="cancelDialog"
+            android:paddingLeft="@dimen/dialog_button_inner_padding"
+            android:paddingRight="@dimen/dialog_button_inner_padding"
+            android:text="@string/rating_dialog_cancel_button_label"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/submitRatingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:onClick="submitRating"
+            android:paddingLeft="@dimen/dialog_button_inner_padding"
+            android:paddingRight="@dimen/dialog_button_inner_padding"
+            android:text="@string/rating_dialog_submit_button_label"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>
