@@ -14,6 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -112,14 +113,38 @@ public class SingleRecipeActivity extends AppCompatActivity {
 
             FloatingActionButton saveFab = findViewById(R.id.fabLike);
             saveFab.setImageResource(R.drawable.favorite);
-        }
-        else {
+        } else {
             savedRecipes.add(recipe.id);
 
             FloatingActionButton saveFab = findViewById(R.id.fabLike);
             saveFab.setImageResource(R.drawable.favorite_border);
         }
         writeRecipesToFile(savedRecipes, getString(R.string.saved_recipes_file_path));
+    }
+
+    public void goToRandomActivity(View view) {
+        // TODO visually indicate loading before awaiting the request
+        final Intent intent = new Intent(this, SingleRecipeActivity.class);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String randomIndexUrl =
+                getApplicationContext().getString(R.string.backend_base_url) +
+                getApplicationContext().getString(R.string.backend_random_id_path);
+
+        StringRequest randomIndexRequest = new StringRequest(Request.Method.GET, randomIndexUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        intent.putExtra(
+                                getApplicationContext().getString(R.string.recipe_id_intent_message),
+                                Integer.parseInt(response));
+                        startActivity(intent);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {}
+        });
+        queue.add(randomIndexRequest);
     }
 
     @Override
