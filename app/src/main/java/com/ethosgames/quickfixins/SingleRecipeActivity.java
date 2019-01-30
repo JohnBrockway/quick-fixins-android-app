@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,6 +37,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
 
     private Recipe recipe;
     private HashSet<Integer> savedRecipes;
+    private HashSet<Integer> ratedRecipes;
 
     private final static int RATING_DIALOG_REQUEST_CODE = 1;
 
@@ -47,7 +49,8 @@ public class SingleRecipeActivity extends AppCompatActivity {
         // TODO add loading indicator to layout, switch to actual layout on response
         int recipeId = getIntent().getIntExtra(
                 getString(R.string.recipe_id_intent_message), 1);
-        savedRecipes = readSavedRecipesFromFile();
+        savedRecipes = readRecipesFromFile(getString(R.string.saved_recipes_file_path));
+        ratedRecipes = readRecipesFromFile(getString(R.string.rated_recipes_file_path));
 
         stepsLayoutManager = new LinearLayoutManager(this);
         ingredientsLayoutManager= new LinearLayoutManager(this);
@@ -68,6 +71,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
                                 FloatingActionButton saveFab = findViewById(R.id.fabLike);
                                 saveFab.setImageResource(R.drawable.favorite_border);
                             }
+                            updateRateButtonStatus();
 
                             stepsRecyclerView = findViewById(R.id.recipeSteps);
                             stepsRecyclerView.setHasFixedSize(true);
@@ -115,7 +119,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
             FloatingActionButton saveFab = findViewById(R.id.fabLike);
             saveFab.setImageResource(R.drawable.favorite_border);
         }
-        writeSavedRecipesToFile();
+        writeRecipesToFile(savedRecipes, getString(R.string.saved_recipes_file_path));
     }
 
     @Override
@@ -158,6 +162,10 @@ public class SingleRecipeActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+
+                ratedRecipes.add(recipe.id);
+                updateRateButtonStatus();
+                writeRecipesToFile(ratedRecipes, getString(R.string.rated_recipes_file_path));
             }
         }
     }
@@ -176,10 +184,10 @@ public class SingleRecipeActivity extends AppCompatActivity {
         queue.add(rateEaseRequest);
     }
 
-    private HashSet<Integer> readSavedRecipesFromFile() {
+    private HashSet<Integer> readRecipesFromFile(String filename) {
         try {
-            File savedRecipesFile = new File(getFilesDir(), getString(R.string.saved_recipes_file_path));
-            FileInputStream fis = openFileInput(savedRecipesFile.getName());
+            File file = new File(getFilesDir(), filename);
+            FileInputStream fis = openFileInput(file.getName());
             InputStreamReader input = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(input);
             StringBuilder sb = new StringBuilder();
@@ -187,10 +195,10 @@ public class SingleRecipeActivity extends AppCompatActivity {
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
-            String savedRecipesString = sb.toString();
+            String recipeString = sb.toString();
 
             HashSet<Integer> recipeIds = new HashSet<>();
-            String[] values = savedRecipesString.split(",");
+            String[] values = recipeString.split(",");
             for (int i = 0 ; i < values.length ; i++) {
                 recipeIds.add(Integer.parseInt(values[i]));
             }
@@ -202,34 +210,42 @@ public class SingleRecipeActivity extends AppCompatActivity {
         }
     }
 
-    private void writeSavedRecipesToFile() {
-        File savedRecipesFile = new File(getFilesDir(), getString(R.string.saved_recipes_file_path));
-        if (!savedRecipesFile.exists()) {
+    private void writeRecipesToFile(HashSet<Integer> recipeSet, String filename) {
+        File file = new File(getFilesDir(), filename);
+        if (!file.exists()) {
             try {
-                savedRecipesFile.createNewFile();
+                file.createNewFile();
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        Integer[] savedRecipesArray = savedRecipes.toArray(new Integer[savedRecipes.size()]);
-        String savedRecipesString = "";
+        Integer[] recipeArray = recipeSet.toArray(new Integer[recipeSet.size()]);
+        String recipeString = "";
 
-        for (int i = 0 ; i < savedRecipesArray.length ; i++) {
-            savedRecipesString += savedRecipesArray[i].toString();
-            if (i < savedRecipesArray.length - 1) {
-                savedRecipesString += ",";
+        for (int i = 0 ; i < recipeArray.length ; i++) {
+            recipeString += recipeArray[i].toString();
+            if (i < recipeArray.length - 1) {
+                recipeString += ",";
             }
         }
 
         try {
-            FileOutputStream output = openFileOutput(savedRecipesFile.getName(), MODE_PRIVATE);
-            output.write(savedRecipesString.getBytes());
+            FileOutputStream output = openFileOutput(file.getName(), MODE_PRIVATE);
+            output.write(recipeString.getBytes());
             output.close();
         }
         catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void updateRateButtonStatus() {
+        if (ratedRecipes.contains(recipe.id)) {
+            Button openRateDialogButton = findViewById(R.id.rateDialogOpen);
+            openRateDialogButton.setEnabled(false);
+            openRateDialogButton.setText(R.string.already_rated_recipe_button_label);
         }
     }
 }

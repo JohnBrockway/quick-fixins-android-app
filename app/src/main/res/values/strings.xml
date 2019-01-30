@@ -17,7 +17,9 @@
     <string name="ingredients_heading">Ingredients</string>
     <string name="steps_heading">Steps</string>
     <string name="saved_recipes_file_path">savedRecipes.txt</string>
+    <string name="rated_recipes_file_path">ratedRecipes.txt</string>
     <string name="rate_recipe_button_label">Made it? Rate it!</string>
+    <string name="already_rated_recipe_button_label">Thanks for rating!</string>
     <string name="ease_rating_text">Easiness of recipe</string>
     <string name="taste_rating_text">Tastiness of recipe</string>
     <string name="rating_dialog_submit_button_label">Submit Rating</string>

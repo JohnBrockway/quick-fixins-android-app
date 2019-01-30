@@ -122,9 +122,11 @@
                 android:layout_marginBottom="@dimen/recipe_info_elements_margin" />
 
             <android.support.design.button.MaterialButton
+                android:id="@+id/rateDialogOpen"
                 android:layout_width="@dimen/button_width"
                 android:layout_height="@dimen/button_height"
                 android:layout_gravity="center"
+                android:enabled="true"
                 android:gravity="center|center_horizontal|center_vertical"
                 android:onClick="openRatingDialog"
                 android:text="@string/rate_recipe_button_label"
