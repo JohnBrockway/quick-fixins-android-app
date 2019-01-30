@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -32,44 +31,9 @@ public class RateRecipeDialogActivity extends AppCompatActivity {
         tasteButtonIds[4] = R.id.tasteRating5;
     }
 
-    public void ratingClicked(View view) {
+    public void setRatingOptionSelected(View view) {
         int id = view.getId();
-        switch (id) {
-            case R.id.easeRating1:
-                Log.d("TEST", "ease1");
-                break;
-            case R.id.easeRating2:
-                Log.d("TEST", "ease2");
-                break;
-            case R.id.easeRating3:
-                Log.d("TEST", "ease3");
-                break;
-            case R.id.easeRating4:
-                Log.d("TEST", "ease4");
-                break;
-            case R.id.easeRating5:
-                Log.d("TEST", "ease5");
-                break;
-            case R.id.tasteRating1:
-                Log.d("TEST", "taste1");
-                break;
-            case R.id.tasteRating2:
-                Log.d("TEST", "taste2");
-                break;
-            case R.id.tasteRating3:
-                Log.d("TEST", "taste3");
-                break;
-            case R.id.tasteRating4:
-                Log.d("TEST", "taste4");
-                break;
-            case R.id.tasteRating5:
-                Log.d("TEST", "taste5");
-                break;
-        }
-        setRatingOptionSelected(id);
-    }
 
-    private void setRatingOptionSelected(int id) {
         boolean isEaseButton = false;
         for (int i = 0 ; i < easeButtonIds.length ; i++) {
             if (easeButtonIds[i] == id) {

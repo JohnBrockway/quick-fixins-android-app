@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="ratingClicked"
+            android:onClick="setRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
             app:srcCompat="@drawable/sentiment_very_dissatisfied" />
 
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="ratingClicked"
+            android:onClick="setRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
             app:srcCompat="@drawable/sentiment_dissatisfied" />
 
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="ratingClicked"
+            android:onClick="setRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
             app:srcCompat="@drawable/sentiment_neutral" />
 
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="ratingClicked"
+            android:onClick="setRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
             app:srcCompat="@drawable/sentiment_satisfied" />
 
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="ratingClicked"
+            android:onClick="setRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
             app:srcCompat="@drawable/sentiment_very_satisfied" />
     </LinearLayout>
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="ratingClicked"
+            android:onClick="setRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
             app:srcCompat="@drawable/sentiment_very_dissatisfied" />
 
@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="ratingClicked"
+            android:onClick="setRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
             app:srcCompat="@drawable/sentiment_dissatisfied" />
 
@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="ratingClicked"
+            android:onClick="setRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
             app:srcCompat="@drawable/sentiment_neutral" />
 
@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="ratingClicked"
+            android:onClick="setRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
             app:srcCompat="@drawable/sentiment_satisfied" />
 
@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="ratingClicked"
+            android:onClick="setRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
             app:srcCompat="@drawable/sentiment_very_satisfied" />
 
