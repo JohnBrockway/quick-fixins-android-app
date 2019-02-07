@@ -55,8 +55,8 @@ public class SingleRecipeActivity extends AppCompatActivity {
         // TODO add loading indicator to layout, switch to actual layout on response
         int recipeId = getIntent().getIntExtra(
                 getString(R.string.recipe_id_intent_message), 1);
-        savedRecipes = readRecipesFromFile(getString(R.string.saved_recipes_file_path));
-        ratedRecipes = readRecipesFromFile(getString(R.string.rated_recipes_file_path));
+        savedRecipes = FileInteractor.readIntegerSetFromFile(getString(R.string.saved_recipes_file_path), getApplicationContext());
+        ratedRecipes = FileInteractor.readIntegerSetFromFile(getString(R.string.rated_recipes_file_path), getApplicationContext());
 
         stepsLayoutManager = new LinearLayoutManager(this);
         ingredientsLayoutManager= new LinearLayoutManager(this);
@@ -121,7 +121,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
             FloatingActionButton saveFab = findViewById(R.id.fabLike);
             saveFab.setImageResource(R.drawable.favorite_border);
         }
-        writeRecipesToFile(savedRecipes, getString(R.string.saved_recipes_file_path));
+        FileInteractor.writeSetToFile(savedRecipes, getString(R.string.saved_recipes_file_path), getApplicationContext());
     }
 
     public void goToRandomActivity() {
@@ -192,7 +192,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
 
                 ratedRecipes.add(recipe.id);
                 updateRateButtonStatus();
-                writeRecipesToFile(ratedRecipes, getString(R.string.rated_recipes_file_path));
+                FileInteractor.writeSetToFile(ratedRecipes, getString(R.string.rated_recipes_file_path), getApplicationContext());
             }
         }
     }
@@ -234,64 +234,6 @@ public class SingleRecipeActivity extends AppCompatActivity {
         });
         queue.add(rateEaseRequest);
     }
-
-    private HashSet<Integer> readRecipesFromFile(String filename) {
-        try {
-            File file = new File(getFilesDir(), filename);
-            FileInputStream fis = openFileInput(file.getName());
-            InputStreamReader input = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(input);
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-            String recipeString = sb.toString();
-
-            HashSet<Integer> recipeIds = new HashSet<>();
-            String[] values = recipeString.split(",");
-            for (int i = 0 ; i < values.length ; i++) {
-                recipeIds.add(Integer.parseInt(values[i]));
-            }
-            return recipeIds;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return new HashSet<>();
-        }
-    }
-
-    private void writeRecipesToFile(HashSet<Integer> recipeSet, String filename) {
-        File file = new File(getFilesDir(), filename);
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        Integer[] recipeArray = recipeSet.toArray(new Integer[recipeSet.size()]);
-        String recipeString = "";
-
-        for (int i = 0 ; i < recipeArray.length ; i++) {
-            recipeString += recipeArray[i].toString();
-            if (i < recipeArray.length - 1) {
-                recipeString += ",";
-            }
-        }
-
-        try {
-            FileOutputStream output = openFileOutput(file.getName(), MODE_PRIVATE);
-            output.write(recipeString.getBytes());
-            output.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     private void updateRateButtonStatus() {
         if (ratedRecipes.contains(recipe.id)) {
             Button openRateDialogButton = findViewById(R.id.rateDialogOpen);
