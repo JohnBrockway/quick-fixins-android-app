@@ -27,7 +27,7 @@ public class StepInputsAdapter extends RecyclerView.Adapter<StepInputsAdapter.St
 
         @Override
         public void onClick(View view) {
-            steps.add(getAdapterPosition() + 1, String.valueOf(getAdapterPosition() + 1));
+            steps.add(getAdapterPosition() + 1, "");
             notifyItemInserted(getAdapterPosition() + 1);
         }
     }

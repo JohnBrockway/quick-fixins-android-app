@@ -27,6 +27,8 @@
     <string name="ease_rating_intent_tag">easeRating</string>
     <string name="taste_rating_intent_tag">tasteRating</string>
     <string name="recipe_name_hint_text">Name</string>
+    <string name="recipe_ingredient_hint_text">Ingredient</string>
+    <string name="recipe_step_hint_text">Step</string>
     <string name="toolbar_create_new_title">Create new recipe</string>
     <string name="toolbar_saved_recipes_title">Saved recipes</string>
     <string name="toolbar_random_recipe_title">Random recipe</string>

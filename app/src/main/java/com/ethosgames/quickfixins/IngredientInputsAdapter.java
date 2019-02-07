@@ -27,7 +27,7 @@ public class IngredientInputsAdapter extends RecyclerView.Adapter<IngredientInpu
 
         @Override
         public void onClick(View view) {
-            ingredients.add(getAdapterPosition() + 1, String.valueOf(getAdapterPosition() + 1));
+            ingredients.add(getAdapterPosition() + 1, "");
             notifyItemInserted(getAdapterPosition() + 1);
         }
     }
