@@ -1,7 +1,6 @@
 package com.ethosgames.quickfixins;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +17,7 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
-public class CreateNewRecipeActivity extends AppCompatActivity {
+public class CreateNewRecipeActivity extends BaseToolbarActivity {
     private RecyclerView stepInputsRecyclerView;
     private RecyclerView ingredientInputsRecyclerView;
     private RecyclerView.Adapter stepInputsAdapter;
@@ -55,29 +54,6 @@ public class CreateNewRecipeActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch(id) {
-            case R.id.action_create_new:
-                startActivity(new Intent(this, CreateNewRecipeActivity.class));
-                return true;
-            case R.id.action_saved_recipes:
-
-                return true;
-            case R.id.action_random_recipe:
-                goToRandomActivity();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
     public void goToRandomActivity() {
         // TODO visually indicate loading before awaiting the request
         final Intent intent = new Intent(this, SingleRecipeActivity.class);

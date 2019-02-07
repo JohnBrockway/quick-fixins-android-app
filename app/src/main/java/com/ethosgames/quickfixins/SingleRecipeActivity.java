@@ -2,13 +2,10 @@ package com.ethosgames.quickfixins;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -25,7 +22,7 @@ import org.json.JSONObject;
 
 import java.util.HashSet;
 
-public class SingleRecipeActivity extends AppCompatActivity {
+public class SingleRecipeActivity extends BaseToolbarActivity {
     private RecyclerView stepsRecyclerView;
     private RecyclerView ingredientsRecyclerView;
     private RecyclerView.Adapter stepsAdapter;
@@ -118,6 +115,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
         FileInteractor.writeSetToFile(savedRecipes, getString(R.string.saved_recipes_file_path), getApplicationContext());
     }
 
+    @Override
     public void goToRandomActivity() {
         // TODO visually indicate loading before awaiting the request
         final Intent intent = new Intent(this, SingleRecipeActivity.class);
@@ -191,30 +189,6 @@ public class SingleRecipeActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch(id) {
-            case R.id.action_create_new:
-                startActivity(new Intent(this, CreateNewRecipeActivity.class));
-                return true;
-            case R.id.action_saved_recipes:
-
-                return true;
-            case R.id.action_random_recipe:
-                goToRandomActivity();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
     private void sendPostWithJsonObject(String url, JSONObject jsonObject) {
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -228,6 +202,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
         });
         queue.add(rateEaseRequest);
     }
+
     private void updateRateButtonStatus() {
         if (ratedRecipes.contains(recipe.id)) {
             Button openRateDialogButton = findViewById(R.id.rateDialogOpen);
