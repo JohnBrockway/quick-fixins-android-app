@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -46,6 +49,8 @@ public class SingleRecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_recipe);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // TODO add loading indicator to layout, switch to actual layout on response
         int recipeId = getIntent().getIntExtra(
@@ -73,6 +78,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
                                 saveFab.setImageResource(R.drawable.favorite_border);
                             }
                             updateRateButtonStatus();
+                            getSupportActionBar().setTitle(recipe.name);
 
                             stepsRecyclerView = findViewById(R.id.recipeSteps);
                             stepsRecyclerView.setHasFixedSize(true);
@@ -97,10 +103,6 @@ public class SingleRecipeActivity extends AppCompatActivity {
         queue.add(getRecipeRequest);
     }
 
-    public void homeButtonPressed(View view) {
-        startActivity(new Intent(this, SplashPageActivity.class));
-    }
-
     public void openRatingDialog(View view) {
         startActivityForResult(
                 new Intent(this, RateRecipeDialogActivity.class),
@@ -122,11 +124,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
         writeRecipesToFile(savedRecipes, getString(R.string.saved_recipes_file_path));
     }
 
-    public void createNewRecipe(View view) {
-        startActivity(new Intent(this, CreateNewRecipeActivity.class));
-    }
-
-    public void goToRandomActivity(View view) {
+    public void goToRandomActivity() {
         // TODO visually indicate loading before awaiting the request
         final Intent intent = new Intent(this, SingleRecipeActivity.class);
 
@@ -196,6 +194,30 @@ public class SingleRecipeActivity extends AppCompatActivity {
                 updateRateButtonStatus();
                 writeRecipesToFile(ratedRecipes, getString(R.string.rated_recipes_file_path));
             }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch(id) {
+            case R.id.action_create_new:
+                startActivity(new Intent(this, CreateNewRecipeActivity.class));
+                return true;
+            case R.id.action_saved_recipes:
+
+                return true;
+            case R.id.action_random_recipe:
+                goToRandomActivity();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

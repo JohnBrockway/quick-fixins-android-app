@@ -11,58 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbarHeight"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_scrollFlags="scroll|enterAlways">
-
-            <ImageButton
-                android:id="@+id/toolbarHome"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="@string/home_icon_desc"
-                android:onClick="homeButtonPressed"
-                android:scaleType="fitCenter"
-                android:theme="@style/HeaderButton"
-                app:srcCompat="@drawable/home" />
-
-            <ImageButton
-                android:id="@+id/toolbarAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="@string/add_icon_desc"
-                android:onClick="createNewRecipe"
-                android:scaleType="fitCenter"
-                android:theme="@style/HeaderButton"
-                app:srcCompat="@drawable/add" />
-
-            <ImageButton
-                android:id="@+id/toolbarList"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="@string/list_icon_desc"
-                android:scaleType="fitCenter"
-                android:theme="@style/HeaderButton"
-                app:srcCompat="@drawable/list_bulleted" />
-
-            <ImageButton
-                android:id="@+id/toolbarNext"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="@string/next_icon_desc"
-                android:onClick="goToRandomActivity"
-                android:scaleType="fitCenter"
-                android:theme="@style/HeaderButton"
-                app:srcCompat="@drawable/arrow_forward" />
-
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_scrollFlags="scroll|enterAlways" />
 
     </android.support.design.widget.AppBarLayout>
 

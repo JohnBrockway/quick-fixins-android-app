@@ -1,0 +1,23 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_create_new"
+        android:icon="@drawable/add"
+        android:title="@string/toolbar_create_new_title"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_saved_recipes"
+        android:icon="@drawable/list_bulleted"
+        android:title="@string/toolbar_saved_recipes_title"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_random_recipe"
+        android:icon="@drawable/arrow_forward"
+        android:title="@string/toolbar_random_recipe_title"
+        app:showAsAction="always"/>
+
+</menu>
