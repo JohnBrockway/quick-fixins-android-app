@@ -2,6 +2,7 @@ package com.ethosgames.quickfixins;
 
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +16,32 @@ public class StepInputsAdapter extends RecyclerView.Adapter<StepInputsAdapter.St
     public class StepInputViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextInputEditText textInput;
         public ImageButton addButton;
+        public ImageButton removeButton;
 
         public StepInputViewHolder(View parentView) {
             super(parentView);
 
             textInput = parentView.findViewById(R.id.nameText);
             addButton = parentView.findViewById(R.id.addButton);
+            removeButton = parentView.findViewById(R.id.removeButton);
 
             addButton.setOnClickListener(this);
+            removeButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            steps.add(getAdapterPosition() + 1, "");
-            notifyItemInserted(getAdapterPosition() + 1);
+            int id = view.getId();
+            switch(id) {
+                case R.id.addButton:
+                    steps.add(getAdapterPosition() + 1, "");
+                    notifyItemInserted(getAdapterPosition() + 1);
+                    break;
+                case R.id.removeButton:
+                    steps.remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
+                    break;
+            }
         }
     }
 

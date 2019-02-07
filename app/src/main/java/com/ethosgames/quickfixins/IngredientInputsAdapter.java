@@ -15,20 +15,32 @@ public class IngredientInputsAdapter extends RecyclerView.Adapter<IngredientInpu
     public class IngredientInputViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextInputEditText textInput;
         public ImageButton addButton;
+        public ImageButton removeButton;
 
         public IngredientInputViewHolder(View parentView) {
             super(parentView);
 
             textInput = parentView.findViewById(R.id.nameText);
             addButton = parentView.findViewById(R.id.addButton);
+            removeButton = parentView.findViewById(R.id.removeButton);
 
             addButton.setOnClickListener(this);
+            removeButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            ingredients.add(getAdapterPosition() + 1, "");
-            notifyItemInserted(getAdapterPosition() + 1);
+            int id = view.getId();
+            switch(id) {
+                case R.id.addButton:
+                    ingredients.add(getAdapterPosition() + 1, "");
+                    notifyItemInserted(getAdapterPosition() + 1);
+                    break;
+                case R.id.removeButton:
+                    ingredients.remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
+                    break;
+            }
         }
     }
 

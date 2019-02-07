@@ -22,13 +22,26 @@
 
     <ImageButton
         android:id="@+id/addButton"
-        app:srcCompat="@drawable/add_circle"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/circular_button_size"
+        android:layout_height="@dimen/circular_button_size"
         android:layout_gravity="center"
+        android:layout_margin="@dimen/circular_button_margin"
         android:layout_weight="0"
-        android:backgroundTint="@color/lightGray"
+        android:background="@drawable/background_button_circular"
+        android:padding="@dimen/circular_button_padding"
         android:scaleType="fitCenter"
-        android:theme="@style/ButtonWithGrayRipple" />
+        app:srcCompat="@drawable/add" />
+
+    <ImageButton
+        android:id="@+id/removeButton"
+        android:layout_width="@dimen/circular_button_size"
+        android:layout_height="@dimen/circular_button_size"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/circular_button_margin"
+        android:layout_weight="0"
+        android:background="@drawable/background_button_circular"
+        android:padding="@dimen/circular_button_padding"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/remove" />
 
 </LinearLayout>
