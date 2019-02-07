@@ -37,8 +37,10 @@ public class IngredientInputsAdapter extends RecyclerView.Adapter<IngredientInpu
                     notifyItemInserted(getAdapterPosition() + 1);
                     break;
                 case R.id.removeButton:
-                    ingredients.remove(getAdapterPosition());
-                    notifyItemRemoved(getAdapterPosition());
+                    if (getItemCount() > 1) {
+                        ingredients.remove(getAdapterPosition());
+                        notifyItemRemoved(getAdapterPosition());
+                    }
                     break;
             }
         }

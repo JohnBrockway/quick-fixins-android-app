@@ -38,8 +38,10 @@ public class StepInputsAdapter extends RecyclerView.Adapter<StepInputsAdapter.St
                     notifyItemInserted(getAdapterPosition() + 1);
                     break;
                 case R.id.removeButton:
-                    steps.remove(getAdapterPosition());
-                    notifyItemRemoved(getAdapterPosition());
+                    if (getItemCount() > 1) {
+                        steps.remove(getAdapterPosition());
+                        notifyItemRemoved(getAdapterPosition());
+                    }
                     break;
             }
         }
