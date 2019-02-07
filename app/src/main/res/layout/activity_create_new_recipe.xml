@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/lightGray"
+tools:context=".SingleRecipeActivity">
+
+<android.support.design.widget.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbarHeight"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_scrollFlags="scroll|enterAlways">
+
+        <ImageButton
+            android:id="@+id/toolbarHome"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="@string/home_icon_desc"
+            android:onClick="homeButtonPressed"
+            android:scaleType="fitCenter"
+            android:theme="@style/HeaderButton"
+            app:srcCompat="@drawable/home" />
+
+        <ImageButton
+            android:id="@+id/toolbarAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="@string/add_icon_desc"
+            android:onClick="createNewRecipe"
+            android:scaleType="fitCenter"
+            android:theme="@style/HeaderButton"
+            app:srcCompat="@drawable/add" />
+
+        <ImageButton
+            android:id="@+id/toolbarList"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="@string/list_icon_desc"
+            android:scaleType="fitCenter"
+            android:theme="@style/HeaderButton"
+            app:srcCompat="@drawable/list_bulleted" />
+
+        <ImageButton
+            android:id="@+id/toolbarNext"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="@string/next_icon_desc"
+            android:onClick="goToRandomActivity"
+            android:scaleType="fitCenter"
+            android:theme="@style/HeaderButton"
+            app:srcCompat="@drawable/arrow_forward" />
+
+    </LinearLayout>
+
+</android.support.design.widget.AppBarLayout>
+
+<android.support.v4.widget.NestedScrollView
+    android:id="@+id/nestedScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/page_margin_horizontal_sides"
+        android:layout_marginTop="@dimen/page_margin_vertical_sides"
+        android:layout_marginRight="@dimen/page_margin_horizontal_sides"
+        android:layout_marginBottom="@dimen/page_margin_vertical_sides"
+        android:orientation="vertical"
+        tools:context=".CreateNewRecipeActivity">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/nameText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/recipe_name_hint_text"
+            android:textColorHint="@color/colorTextLight">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorText" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/ingredientsHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ingredients_heading"
+            android:layout_weight="1"
+            android:textColor="@color/colorText"
+            android:textSize="24sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ingredientsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/stepsHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/steps_heading"
+            android:layout_weight="1"
+            android:textColor="@color/colorText"
+            android:textSize="24sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/stepsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

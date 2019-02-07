@@ -26,4 +26,5 @@
     <string name="rating_dialog_cancel_button_label">Cancel</string>
     <string name="ease_rating_intent_tag">easeRating</string>
     <string name="taste_rating_intent_tag">tasteRating</string>
+    <string name="recipe_name_hint_text">Name</string>
 </resources>

@@ -3,8 +3,13 @@
     <color name="colorPrimaryLight">#FFCD80</color>
     <color name="colorPrimary">#FFA726</color>
     <color name="colorPrimaryDark">#E65100</color>
-    <color name="colorText">#3F3F3F</color>
     <color name="colorAccent">#267DFF</color>
+    <color name="colorControlNormal">@color/colorTextLight</color>
+    <color name="colorControlActivated">@color/colorAccent</color>
+    <color name="colorControlHighlight">@color/colorAccent</color>
+    <color name="colorText">#3F3F3F</color>
+    <color name="colorTextLight">#9A9A9A</color>
     <color name="white">#FFFFFF</color>
     <color name="lightGray">#EEEEEE</color>
+
 </resources>

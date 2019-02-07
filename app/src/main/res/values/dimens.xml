@@ -3,7 +3,6 @@
     <dimen name="toolbarHeight">56dp</dimen>
     <dimen name="toolbar_icon_height">36dp</dimen>
     <dimen name="recipe_info_elements_margin">20dp</dimen>
-    <dimen name="recipe_page_side_margins">40dp</dimen>
     <dimen name="padding_between_ingredients">4dp</dimen>
     <dimen name="padding_between_steps">20dp</dimen>
     <dimen name="padding_between_fabs">16dp</dimen>
@@ -13,4 +12,6 @@
     <dimen name="dialog_outer_padding">20dp</dimen>
     <dimen name="dialog_inner_padding">20dp</dimen>
     <dimen name="dialog_button_inner_padding">10dp</dimen>
+    <dimen name="page_margin_horizontal_sides">40dp</dimen>
+    <dimen name="page_margin_vertical_sides">20dp</dimen>
 </resources>

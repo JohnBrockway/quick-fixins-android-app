@@ -5,13 +5,13 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder> {
+public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.IngredientViewHolder> {
     private String[] ingredients;
 
-    public static class IngredientsViewHolder extends RecyclerView.ViewHolder {
+    public static class IngredientViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
 
-        public IngredientsViewHolder(TextView v) {
+        public IngredientViewHolder(TextView v) {
             super(v);
             textView = v;
         }
@@ -22,14 +22,14 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     }
 
     @Override
-    public IngredientsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public IngredientViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         TextView view = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recipe_ingredients, parent, false);
-        IngredientsViewHolder viewHolder = new IngredientsViewHolder(view);
+        IngredientViewHolder viewHolder = new IngredientViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(IngredientsViewHolder holder, int position) {
+    public void onBindViewHolder(IngredientViewHolder holder, int position) {
         holder.textView.setText(ingredients[position]);
     }
 

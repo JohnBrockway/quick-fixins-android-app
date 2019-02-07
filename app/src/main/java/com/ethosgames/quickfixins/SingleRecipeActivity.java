@@ -122,6 +122,10 @@ public class SingleRecipeActivity extends AppCompatActivity {
         writeRecipesToFile(savedRecipes, getString(R.string.saved_recipes_file_path));
     }
 
+    public void createNewRecipe(View view) {
+        startActivity(new Intent(this, CreateNewRecipeActivity.class));
+    }
+
     public void goToRandomActivity(View view) {
         // TODO visually indicate loading before awaiting the request
         final Intent intent = new Intent(this, SingleRecipeActivity.class);
