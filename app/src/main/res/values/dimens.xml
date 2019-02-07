@@ -15,6 +15,6 @@
     <dimen name="page_margin_horizontal_sides">40dp</dimen>
     <dimen name="page_margin_vertical_sides">20dp</dimen>
     <dimen name="circular_button_size">25dp</dimen>
-    <dimen name="circular_button_margin">10dp</dimen>
+    <dimen name="circular_button_margin">15dp</dimen>
     <dimen name="circular_button_padding">2dp</dimen>
 </resources>
