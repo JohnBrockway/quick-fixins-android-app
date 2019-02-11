@@ -7,7 +7,6 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.android.volley.Request;
@@ -125,6 +124,7 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     saveButton.setEnabled(true);
+                    saveButton.setText(R.string.save_recipe_button_label);
                 }
             });
 

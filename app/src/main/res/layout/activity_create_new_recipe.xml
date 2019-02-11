@@ -94,7 +94,7 @@ tools:context=".CreateNewRecipeActivity">
             android:enabled="true"
             android:gravity="center|center_horizontal|center_vertical"
             android:onClick="saveRecipe"
-            android:text="@string/save_recipe_buton_label"
+            android:text="@string/save_recipe_button_label"
             android:translationZ="2dp" />
 
     </LinearLayout>
