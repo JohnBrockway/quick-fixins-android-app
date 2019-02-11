@@ -2,6 +2,8 @@ package com.ethosgames.quickfixins;
 
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,18 @@ public class IngredientInputsAdapter extends RecyclerView.Adapter<IngredientInpu
             addButton = parentView.findViewById(R.id.addButton);
             removeButton = parentView.findViewById(R.id.removeButton);
 
+            textInput.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    ingredients.set(getAdapterPosition(), s.toString());
+                }
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
             addButton.setOnClickListener(this);
             removeButton.setOnClickListener(this);
         }
@@ -65,5 +79,9 @@ public class IngredientInputsAdapter extends RecyclerView.Adapter<IngredientInpu
     @Override
     public int getItemCount() {
         return ingredients.size();
+    }
+
+    public String getDataAt(int position) {
+        return ingredients.get(position);
     }
 }
