@@ -35,4 +35,5 @@
     <string name="toolbar_random_recipe_title">Random recipe</string>
     <string name="new_recipe_toolbar_title">New recipe</string>
     <string name="save_recipe_buton_label">Save recipe</string>
+    <string name="save_recipe_disabled_button_label">Thanks for the recipe!</string>
 </resources>

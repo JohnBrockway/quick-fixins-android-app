@@ -2,10 +2,12 @@ package com.ethosgames.quickfixins;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.button.MaterialButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.android.volley.Request;
@@ -31,6 +33,7 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
     private RecyclerView.LayoutManager ingredientInputsLayoutManager;
 
     private TextInputEditText recipeName;
+    private MaterialButton saveButton;
 
     private final ArrayList<String> steps = new ArrayList<>();
     private final ArrayList<String> ingredients = new ArrayList<>();
@@ -50,6 +53,7 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
         ingredientInputsLayoutManager= new LinearLayoutManager(this);
 
         recipeName = findViewById(R.id.recipeName);
+        saveButton = findViewById(R.id.saveRecipe);
 
         stepInputsRecyclerView = findViewById(R.id.stepsList);
         stepInputsRecyclerView.setLayoutManager(stepInputsLayoutManager);
@@ -119,8 +123,13 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
                 public void onResponse(JSONObject response) {}
             }, new Response.ErrorListener() {
                 @Override
-                public void onErrorResponse(VolleyError error) {}
+                public void onErrorResponse(VolleyError error) {
+                    saveButton.setEnabled(true);
+                }
             });
+
+            saveButton.setEnabled(false);
+            saveButton.setText(R.string.save_recipe_disabled_button_label);
             queue.add(insertRecipeRequest);
         }
         catch (JSONException e) {
