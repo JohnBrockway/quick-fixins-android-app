@@ -68,8 +68,6 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
     @Override
     public void goToRandomActivity() {
         // TODO visually indicate loading before awaiting the request
-        final Intent intent = new Intent(this, SingleRecipeActivity.class);
-
         RequestQueue queue = Volley.newRequestQueue(this);
         String randomIndexUrl =
                 getApplicationContext().getString(R.string.backend_base_url) +
@@ -79,10 +77,7 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        intent.putExtra(
-                                getApplicationContext().getString(R.string.recipe_id_intent_message),
-                                Integer.parseInt(response));
-                        startActivity(intent);
+                        startActivityWithId(Integer.parseInt(response));
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -119,7 +114,14 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
             JsonObjectRequest insertRecipeRequest = new JsonObjectRequest(
                     Request.Method.POST, insertUrl, recipeJson, new Response.Listener<JSONObject>() {
                 @Override
-                public void onResponse(JSONObject response) {}
+                public void onResponse(JSONObject response) {
+                    try {
+                        int id = response.getInt("ID");
+                        startActivityWithId(id);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
@@ -135,5 +137,13 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
         catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void startActivityWithId(int id) {
+        final Intent intent = new Intent(this, SingleRecipeActivity.class);
+        intent.putExtra(
+                getApplicationContext().getString(R.string.recipe_id_intent_message),
+                id);
+        startActivity(intent);
     }
 }
