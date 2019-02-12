@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class CreateNewRecipeActivity extends BaseToolbarActivity {
     private RecyclerView stepInputsRecyclerView;
@@ -118,6 +119,9 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         int id = response.getInt("ID");
+                        HashSet<Integer> savedRecipes = FileInteractor.readIntegerSetFromFile(getString(R.string.saved_recipes_file_path), getApplicationContext());
+                        savedRecipes.add(id);
+                        FileInteractor.writeSetToFile(savedRecipes, getString(R.string.saved_recipes_file_path), getApplicationContext());
                         startActivityWithId(id);
                     } catch (JSONException e) {
                         e.printStackTrace();
