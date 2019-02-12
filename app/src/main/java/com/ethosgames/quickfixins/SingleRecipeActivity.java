@@ -64,10 +64,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             recipe = new Recipe(response);
-                            if (savedRecipes.contains(recipe.id)) {
-                                FloatingActionButton saveFab = findViewById(R.id.fabLike);
-                                saveFab.setImageResource(R.drawable.favorite_border);
-                            }
+                            updateSaveButtonStatus();
                             updateRateButtonStatus();
                             getSupportActionBar().setTitle(recipe.name);
 
@@ -103,16 +100,11 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
     public void toggleSavedStatus(View view) {
         if (savedRecipes.contains(recipe.id)) {
             savedRecipes.remove(recipe.id);
-
-            FloatingActionButton saveFab = findViewById(R.id.fabLike);
-            saveFab.setImageResource(R.drawable.favorite);
         } else {
             savedRecipes.add(recipe.id);
-
-            FloatingActionButton saveFab = findViewById(R.id.fabLike);
-            saveFab.setImageResource(R.drawable.favorite_border);
         }
         FileInteractor.writeSetToFile(savedRecipes, getString(R.string.saved_recipes_file_path), getApplicationContext());
+        updateSaveButtonStatus();
     }
 
     @Override
@@ -208,6 +200,16 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
             Button openRateDialogButton = findViewById(R.id.rateDialogOpen);
             openRateDialogButton.setEnabled(false);
             openRateDialogButton.setText(R.string.already_rated_recipe_button_label);
+        }
+    }
+
+    private void updateSaveButtonStatus() {
+        FloatingActionButton saveFab = findViewById(R.id.fabLike);
+
+        if (savedRecipes.contains(recipe.id)) {
+            saveFab.setImageResource(R.drawable.favorite_border);
+        } else {
+            saveFab.setImageResource(R.drawable.favorite);
         }
     }
 }
