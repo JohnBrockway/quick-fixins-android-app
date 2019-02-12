@@ -7,12 +7,14 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
 public class StepInputsAdapter extends RecyclerView.Adapter<StepInputsAdapter.StepInputViewHolder> {
     private ArrayList<String> steps;
+    private RecyclerView recyclerView;
 
     public class StepInputViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextInputEditText textInput;
@@ -47,8 +49,23 @@ public class StepInputsAdapter extends RecyclerView.Adapter<StepInputsAdapter.St
             int id = view.getId();
             switch(id) {
                 case R.id.addButton:
-                    steps.add(getAdapterPosition() + 1, "");
-                    notifyItemInserted(getAdapterPosition() + 1);
+                    final int nextAdapterPosition = getAdapterPosition() + 1;
+                    steps.add(nextAdapterPosition, "");
+                    notifyItemInserted(nextAdapterPosition);
+
+                    // Set focus on the newly created text input
+                    // Need to wrap in wait for the RecyclerView to finish calculating the new layout
+                    // or else the call to find the Adapter position (getAdapterPosition() + 1) will
+                    // fail as it is not yet created.
+                    recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                        @Override
+                        public void onGlobalLayout() {
+                            StepInputsAdapter.StepInputViewHolder viewHolder =
+                                    (StepInputsAdapter.StepInputViewHolder) recyclerView.findViewHolderForAdapterPosition(nextAdapterPosition);
+                            viewHolder.textInput.requestFocus();
+                            recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        }
+                    });
                     break;
                 case R.id.removeButton:
                     if (getItemCount() > 1) {
@@ -74,6 +91,12 @@ public class StepInputsAdapter extends RecyclerView.Adapter<StepInputsAdapter.St
     @Override
     public void onBindViewHolder(StepInputViewHolder holder, int position) {
         holder.textInput.setText(steps.get(position));
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        this.recyclerView = recyclerView;
     }
 
     @Override
