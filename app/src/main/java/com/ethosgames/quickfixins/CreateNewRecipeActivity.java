@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -125,6 +126,7 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), R.string.recipe_insert_server_failure, Toast.LENGTH_LONG).show();
                     saveButton.setEnabled(true);
                     saveButton.setText(R.string.save_recipe_button_label);
                 }
