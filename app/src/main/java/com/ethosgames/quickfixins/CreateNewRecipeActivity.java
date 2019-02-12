@@ -47,14 +47,21 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.new_recipe_toolbar_title);
 
-        steps.add("");
-        ingredients.add("");
-
         stepInputsLayoutManager = new LinearLayoutManager(this);
         ingredientInputsLayoutManager= new LinearLayoutManager(this);
 
         recipeName = findViewById(R.id.recipeName);
         saveButton = findViewById(R.id.saveRecipe);
+
+        String name = getIntent().getStringExtra(getString(R.string.recipe_name_intent_message));
+        String[] defaultIngredients = getIntent().getStringArrayExtra(
+                getString(R.string.recipe_ingredients_intent_message));
+        String[] defaultSteps = getIntent().getStringArrayExtra(
+                getString(R.string.recipe_steps_intent_message));
+
+        recipeName.setText(name);
+        populateArrayListWithArray(ingredients, defaultIngredients);
+        populateArrayListWithArray(steps, defaultSteps);
 
         stepInputsRecyclerView = findViewById(R.id.stepsList);
         stepInputsRecyclerView.setLayoutManager(stepInputsLayoutManager);
@@ -151,5 +158,16 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
                 getApplicationContext().getString(R.string.recipe_id_intent_message),
                 id);
         startActivity(intent);
+    }
+
+    public void populateArrayListWithArray(ArrayList<String> list, String[] array) {
+        if (array == null || array.length == 0) {
+            list.add("");
+        }
+        else {
+            for (int i = 0 ; i < array.length ; i++) {
+                list.add(array[i]);
+            }
+        }
     }
 }

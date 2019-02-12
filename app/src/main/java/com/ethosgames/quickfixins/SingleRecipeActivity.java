@@ -107,6 +107,14 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
         updateSaveButtonStatus();
     }
 
+    public void remixRecipe(View view) {
+        Intent intent = new Intent(this, CreateNewRecipeActivity.class);
+        intent.putExtra(getString(R.string.recipe_name_intent_message), recipe.name);
+        intent.putExtra(getString(R.string.recipe_ingredients_intent_message), recipe.ingredients);
+        intent.putExtra(getString(R.string.recipe_steps_intent_message), recipe.steps);
+        startActivity(intent);
+    }
+
     @Override
     public void goToRandomActivity() {
         // TODO visually indicate loading before awaiting the request

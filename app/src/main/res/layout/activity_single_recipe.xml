@@ -99,6 +99,7 @@
         android:layout_gravity="top|end"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
+        android:onClick="remixRecipe"
         android:theme="@style/SecondaryFAB"
         app:layout_anchor="@+id/fabPlaceholder"
         app:layout_anchorGravity="top"

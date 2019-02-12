@@ -9,7 +9,10 @@
     <string name="backend_rate_recipe_ease_path">v1/rateRecipeEase</string>
     <string name="backend_rate_recipe_taste_path">v1/rateRecipeTaste</string>
     <string name="backend_insert_recipe_path">/v1/addRecipe</string>
-    <string name="recipe_id_intent_message">com.ethosgames.quickfixins.RECIPE_ID_MESSAGE</string>
+    <string name="recipe_id_intent_message">com.ethosgames.quickfixins.RECIPE_ID</string>
+    <string name="recipe_name_intent_message">com.ethosgames.quickfixins.RECIPE_NAME</string>
+    <string name="recipe_ingredients_intent_message">com.ethosgames.quickfixins.RECIPE_INGREDIENTS</string>
+    <string name="recipe_steps_intent_message">com.ethosgames.quickfixins.RECIPE_STEPS</string>
     <string name="home_icon_desc">Home Icon</string>
     <string name="add_icon_desc">Plus Icon</string>
     <string name="list_icon_desc">List Icon</string>
