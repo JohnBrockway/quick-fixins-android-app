@@ -14,8 +14,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -78,21 +78,27 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
     public void goToRandomActivity() {
         // TODO visually indicate loading before awaiting the request
         RequestQueue queue = Volley.newRequestQueue(this);
-        String randomIndexUrl =
+        String validIDsUrl =
                 getApplicationContext().getString(R.string.backend_base_url) +
-                        getApplicationContext().getString(R.string.backend_random_id_path);
+                getApplicationContext().getString(R.string.backend_all_valid_ids_path);
 
-        StringRequest randomIndexRequest = new StringRequest(Request.Method.GET, randomIndexUrl,
-                new Response.Listener<String>() {
+        JsonArrayRequest validIDsRequest = new JsonArrayRequest(validIDsUrl,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(String response) {
-                        startActivityWithId(Integer.parseInt(response));
+                    public void onResponse(JSONArray response) {
+                        int randomIndex = (int) Math.floor(Math.random() * response.length());
+                        try {
+                            int id = ((JSONObject) response.get(randomIndex)).getInt("ID");
+                            startActivityWithId(id);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {}
         });
-        queue.add(randomIndexRequest);
+        queue.add(validIDsRequest);
     }
 
     public void saveRecipe(View view) {
