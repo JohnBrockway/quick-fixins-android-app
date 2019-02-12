@@ -130,9 +130,14 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        int randomIndex = (int) Math.floor(Math.random() * response.length());
                         try {
-                            int id = ((JSONObject) response.get(randomIndex)).getInt("ID");
+                            int id = recipe.id;
+                            // If the random id selected is the current recipe, try to find a new one.
+                            // Set a limit of retries to ensure the application doesn't hang.
+                            for (int i = 0 ; i < 5 && id == recipe.id ; i++) {
+                                int randomIndex = (int) Math.floor(Math.random() * response.length());
+                                id = ((JSONObject) response.get(randomIndex)).getInt("ID");
+                            }
                             intent.putExtra(
                                     getApplicationContext().getString(R.string.recipe_id_intent_message),
                                     id);
