@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -45,7 +46,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
         setSupportActionBar(toolbar);
 
         // TODO add loading indicator to layout, switch to actual layout on response
-        int recipeId = getIntent().getIntExtra(
+        final int recipeId = getIntent().getIntExtra(
                 getString(R.string.recipe_id_intent_message), 1);
         savedRecipes = FileInteractor.readIntegerSetFromFile(getString(R.string.saved_recipes_file_path), getApplicationContext());
         ratedRecipes = FileInteractor.readIntegerSetFromFile(getString(R.string.rated_recipes_file_path), getApplicationContext());
@@ -68,6 +69,14 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                             updateSaveButtonStatus();
                             updateRateButtonStatus();
                             getSupportActionBar().setTitle(recipe.name);
+
+                            ImageView imageView = findViewById(R.id.recipePrimaryImageView);
+                            if (recipe.imageUrl == null) {
+                                imageView.setImageDrawable(getDrawable(R.drawable.image_not_found));
+                            }
+                            else {
+                                new DownloadImageTask(imageView).execute(recipe.imageUrl);
+                            }
 
                             stepsRecyclerView = findViewById(R.id.recipeSteps);
                             stepsRecyclerView.setHasFixedSize(true);

@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 public class Recipe {
     public int id;
+    public String imageUrl;
     public String name;
     public String[] ingredients;
     public String[] steps;
@@ -17,6 +18,7 @@ public class Recipe {
     public Recipe(JSONObject jsonObject) {
         try {
             id = jsonObject.getInt("ID");
+            imageUrl = jsonObject.getString("ImageUrl");
             name = jsonObject.getString("Name");
             JSONArray stepsJson = jsonObject.getJSONArray("Steps");
             steps = convertJsonArrayToStringArray(stepsJson);

@@ -40,11 +40,10 @@
             <ImageView
                 android:id="@+id/recipePrimaryImageView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/recipe_image_height"
                 android:layout_marginBottom="@dimen/recipe_info_elements_margin"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/recipe_image_desc"
-                app:srcCompat="@drawable/image_not_found" />
+                android:contentDescription="@string/recipe_image_desc" />
 
             <TextView
                 android:id="@+id/ingredientsHeading"
