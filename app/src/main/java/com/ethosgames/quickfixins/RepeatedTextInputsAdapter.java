@@ -70,6 +70,10 @@ public abstract class RepeatedTextInputsAdapter extends RecyclerView.Adapter<Rep
                         data.remove(getAdapterPosition());
                         notifyItemRemoved(getAdapterPosition());
                     }
+                    else if (getItemCount() == 1) {
+                        data.set(getAdapterPosition(), "");
+                        notifyItemChanged(getAdapterPosition());
+                    }
                     break;
             }
         }
