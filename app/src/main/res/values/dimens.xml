@@ -19,4 +19,5 @@
     <dimen name="circular_button_margin">15dp</dimen>
     <dimen name="circular_button_padding">2dp</dimen>
     <dimen name="recipe_image_height">200dp</dimen>
+    <dimen name="add_image_button_padding">50dp</dimen>
 </resources>

@@ -38,6 +38,18 @@ tools:context=".CreateNewRecipeActivity">
         android:orientation="vertical"
         tools:context=".CreateNewRecipeActivity">
 
+        <ImageButton
+            android:id="@+id/addImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/recipe_image_height"
+            android:layout_marginBottom="@dimen/recipe_info_elements_margin"
+            android:adjustViewBounds="true"
+            android:backgroundTint="@color/imageButtonBackground"
+            android:onClick="chooseImage"
+            android:padding="@dimen/add_image_button_padding"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/add_photo" />
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/nameText"
             android:layout_width="fill_parent"

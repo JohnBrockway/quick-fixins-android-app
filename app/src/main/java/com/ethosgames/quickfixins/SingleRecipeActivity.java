@@ -71,7 +71,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                             getSupportActionBar().setTitle(recipe.name);
 
                             ImageView imageView = findViewById(R.id.recipePrimaryImageView);
-                            if (recipe.imageUrl == null) {
+                            if (recipe.imageUrl.equals("null")) {
                                 imageView.setImageDrawable(getDrawable(R.drawable.image_not_found));
                             }
                             else {

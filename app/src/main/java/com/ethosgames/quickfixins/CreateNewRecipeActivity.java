@@ -1,13 +1,20 @@
 package com.ethosgames.quickfixins;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.button.MaterialButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,6 +29,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -38,6 +47,10 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
 
     private final ArrayList<String> steps = new ArrayList<>();
     private final ArrayList<String> ingredients = new ArrayList<>();
+
+    private Bitmap selectedImageBitmap = null;
+
+    private final static int IMAGE_SELECTION_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +128,16 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
                 stepsArray.put(stepInputsAdapter.getDataAt(i));
             }
 
+            String encodedImageData = null;
+            if (selectedImageBitmap != null) {
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                selectedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                encodedImageData = Base64.encodeToString(byteArray, Base64.DEFAULT);
+            }
+
             JSONObject recipeJson = new JSONObject();
+            recipeJson.put("ImageData", encodedImageData);
             recipeJson.put("Name", recipeName.getText().toString());
             recipeJson.put("Ingredients", ingredientsArray);
             recipeJson.put("Steps", stepsArray);
@@ -173,6 +195,38 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
         else {
             for (int i = 0 ; i < array.length ; i++) {
                 list.add(array[i]);
+            }
+        }
+    }
+
+    public void chooseImage(View view) {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), IMAGE_SELECTION_REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (requestCode == IMAGE_SELECTION_REQUEST_CODE && resultCode == RESULT_OK) {
+            Uri imageUri = data.getData();
+            ImageButton imageButton = findViewById(R.id.addImageButton);
+            try {
+                selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                double scaleFactor = selectedImageBitmap.getWidth() / 500.0;
+                selectedImageBitmap = Bitmap.createScaledBitmap(
+                        selectedImageBitmap,
+                        (int) (selectedImageBitmap.getWidth() / scaleFactor),
+                        (int) (selectedImageBitmap.getHeight() / scaleFactor),
+                        false);
+                BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), selectedImageBitmap);
+                imageButton.setImageDrawable(bitmapDrawable);
+                imageButton.setPadding(0, 0, 0, 0);
+                imageButton.setBackgroundTintList(null);
+                imageButton.setBackground(new ColorDrawable(getResources().getColor(R.color.lightGray)));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

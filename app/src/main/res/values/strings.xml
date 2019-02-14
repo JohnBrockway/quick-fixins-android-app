@@ -38,6 +38,6 @@
     <string name="toolbar_random_recipe_title">Random recipe</string>
     <string name="new_recipe_toolbar_title">New recipe</string>
     <string name="save_recipe_button_label">Save recipe</string>
-    <string name="save_recipe_disabled_button_label">Thanks for the recipe!</string>
+    <string name="save_recipe_disabled_button_label">Adding recipe...</string>
     <string name="recipe_insert_server_failure">Sorry, there was an error saving your recipe</string>
 </resources>
