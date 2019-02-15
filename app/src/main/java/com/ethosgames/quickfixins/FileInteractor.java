@@ -15,6 +15,15 @@ public class FileInteractor {
     public static HashSet<Integer> readIntegerSetFromFile(String filename, Context context) {
         try {
             File file = new File(context.getFilesDir(), filename);
+            if (!file.exists()) {
+                try {
+                    file.createNewFile();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
             FileInputStream fis = context.openFileInput(file.getName());
             InputStreamReader input = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(input);
@@ -26,10 +35,13 @@ public class FileInteractor {
             String recipeString = sb.toString();
 
             HashSet<Integer> recipeIds = new HashSet<>();
-            String[] values = recipeString.split(",");
-            for (int i = 0 ; i < values.length ; i++) {
-                recipeIds.add(Integer.parseInt(values[i]));
+            if(recipeString.length() != 0) {
+                String[] values = recipeString.split(",");
+                for (int i = 0 ; i < values.length ; i++) {
+                    recipeIds.add(Integer.parseInt(values[i]));
+                }
             }
+
             return recipeIds;
         }
         catch (Exception e) {

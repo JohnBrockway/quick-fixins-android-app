@@ -2,7 +2,6 @@ package com.ethosgames.quickfixins;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -61,7 +60,7 @@ public abstract class BaseToolbarActivity extends AppCompatActivity {
                                 idToAvoid = idsToAvoid[0];
                             }
 
-                            int id = -1;
+                            int id = idToAvoid;
                             // If the random id selected is to be avoided, try to find a new one.
                             // Set a limit of retries to ensure the application doesn't hang.
                             for (int i = 0 ; i < 5 && id == idToAvoid ; i++) {
