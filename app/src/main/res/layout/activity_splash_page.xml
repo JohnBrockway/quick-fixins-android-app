@@ -24,6 +24,7 @@
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
         android:backgroundTint="@color/colorAccent"
+        android:onClick="goToSavedRecipes"
         android:text="@string/saved_recipes_button_label"
         android:translationZ="2dp"
         app:layout_constraintBottom_toBottomOf="parent"

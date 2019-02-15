@@ -70,4 +70,8 @@ public class SplashPageActivity extends AppCompatActivity {
                 });
         queue.add(validIDsRequest);
     }
+
+    public void goToSavedRecipes(View view) {
+        startActivity(new Intent(this, SavedRecipesListActivity.class));
+    }
 }
