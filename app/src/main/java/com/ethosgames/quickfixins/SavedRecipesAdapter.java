@@ -1,10 +1,12 @@
 package com.ethosgames.quickfixins;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,28 +17,43 @@ public class SavedRecipesAdapter extends RecyclerView.Adapter<SavedRecipesAdapte
     private HashSet<Integer> savedRecipes;
 
     public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public LinearLayout recipeRow;
         public TextView recipeNameTextView;
         public ImageButton unsaveButton;
 
         public RecipeViewHolder(View parentView) {
             super(parentView);
 
+            recipeRow = parentView.findViewById(R.id.recipeRow);
             recipeNameTextView = parentView.findViewById(R.id.recipeName);
             unsaveButton = parentView.findViewById(R.id.unsaveButton);
 
+            recipeRow.setOnClickListener(this);
             unsaveButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            int id = data.get(getAdapterPosition()).id;
-            if (savedRecipes.contains(id)) {
-                savedRecipes.remove(id);
-                unsaveButton.setImageResource(R.drawable.favorite_border);
-            }
-            else {
-                unsaveButton.setImageResource(R.drawable.favorite);
-                savedRecipes.add(id);
+            int id = view.getId();
+            int recipeId = data.get(getAdapterPosition()).id;
+            switch(id) {
+                case R.id.recipeRow:
+                    Intent intent = new Intent(view.getContext(), SingleRecipeActivity.class);
+                    intent.putExtra(
+                            view.getContext().getString(R.string.recipe_id_intent_message),
+                            recipeId);
+                    view.getContext().startActivity(intent);
+                    break;
+                case R.id.unsaveButton:
+                    if (savedRecipes.contains(recipeId)) {
+                        savedRecipes.remove(recipeId);
+                        unsaveButton.setImageResource(R.drawable.favorite_border);
+                    }
+                    else {
+                        unsaveButton.setImageResource(R.drawable.favorite);
+                        savedRecipes.add(recipeId);
+                    }
+                    break;
             }
         }
     }
