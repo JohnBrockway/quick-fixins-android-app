@@ -42,4 +42,6 @@
     <string name="save_recipe_disabled_button_label">Adding recipe...</string>
     <string name="recipe_insert_server_failure">Sorry, there was an error saving your recipe</string>
     <string name="saved_recipe_list_activity_title">My Saved Recipes</string>
+    <string name="loading_saved_recipes">Loading your saved recipes...</string>
+    <string name="no_saved_recipes">You don\'t have any saved recipes yet!</string>
 </resources>

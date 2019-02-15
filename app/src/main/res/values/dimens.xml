@@ -22,4 +22,8 @@
     <dimen name="add_image_button_padding">50dp</dimen>
     <dimen name="saved_recipe_list_element_border_width">1dp</dimen>
     <dimen name="saved_recipe_list_element_padding">10dp</dimen>
+    <dimen name="full_page_icon_height">150dp</dimen>
+    <dimen name="full_page_icon_top_padding">125dp</dimen>
+    <dimen name="full_page_icon_label_top_padding">40dp</dimen>
+    <dimen name="full_page_icon_label_size">18sp</dimen>
 </resources>

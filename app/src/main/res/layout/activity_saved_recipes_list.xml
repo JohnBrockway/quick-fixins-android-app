@@ -33,16 +33,78 @@ tools:context=".SavedRecipesListActivity">
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/savedRecipes"
+        <LinearLayout
+            android:id="@+id/recipeListLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/recipe_info_elements_margin"
-            android:layout_marginBottom="@dimen/recipe_info_elements_margin"
-            android:background="@color/savedRecipeBorderColor"
-            android:paddingTop="@dimen/saved_recipe_list_element_border_width"
-            android:paddingBottom="@dimen/saved_recipe_list_element_border_width" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/savedRecipes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/recipe_info_elements_margin"
+                android:layout_marginBottom="@dimen/recipe_info_elements_margin"
+                android:background="@color/savedRecipeBorderColor"
+                android:paddingTop="@dimen/saved_recipe_list_element_border_width"
+                android:paddingBottom="@dimen/saved_recipe_list_element_border_width" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/loadingSavedRecipesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/full_page_icon_top_padding"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/full_page_icon_height"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/menu" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/page_margin_horizontal_sides"
+                android:layout_marginTop="@dimen/full_page_icon_label_top_padding"
+                android:layout_marginRight="@dimen/page_margin_horizontal_sides"
+                android:text="@string/loading_saved_recipes"
+                android:textAlignment="center"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/full_page_icon_label_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/noSavedRecipesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/full_page_icon_top_padding"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/full_page_icon_height"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/plates" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/page_margin_horizontal_sides"
+                android:layout_marginTop="@dimen/full_page_icon_label_top_padding"
+                android:layout_marginRight="@dimen/page_margin_horizontal_sides"
+                android:text="@string/no_saved_recipes"
+                android:textAlignment="center"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/full_page_icon_label_size" />
+
+        </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
 
