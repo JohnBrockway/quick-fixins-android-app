@@ -100,6 +100,7 @@
         android:clickable="true"
         android:onClick="remixRecipe"
         android:theme="@style/SecondaryFAB"
+        android:tint="@android:color/black"
         app:layout_anchor="@+id/fabPlaceholder"
         app:layout_anchorGravity="top"
         app:srcCompat="@drawable/open_in_new" />
@@ -122,6 +123,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
         android:onClick="toggleSavedStatus"
+        android:tint="@color/white"
         app:layout_anchor="@+id/nestedScrollView"
         app:layout_anchorGravity="end|bottom"
         app:srcCompat="@drawable/favorite" />
