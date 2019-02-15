@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -128,40 +129,15 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
     }
 
     @Override
-    public void goToRandomActivity() {
-        // TODO visually indicate loading before awaiting the request
-        final Intent intent = new Intent(this, SingleRecipeActivity.class);
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String validIDsUrl =
-                getApplicationContext().getString(R.string.backend_base_url) +
-                getApplicationContext().getString(R.string.backend_all_valid_ids_path);
-
-        JsonArrayRequest validIDsRequest = new JsonArrayRequest(validIDsUrl,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            int id = recipe.id;
-                            // If the random id selected is the current recipe, try to find a new one.
-                            // Set a limit of retries to ensure the application doesn't hang.
-                            for (int i = 0 ; i < 5 && id == recipe.id ; i++) {
-                                int randomIndex = (int) Math.floor(Math.random() * response.length());
-                                id = ((JSONObject) response.get(randomIndex)).getInt("ID");
-                            }
-                            intent.putExtra(
-                                    getApplicationContext().getString(R.string.recipe_id_intent_message),
-                                    id);
-                            startActivity(intent);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {}
-        });
-        queue.add(validIDsRequest);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch(id) {
+            case R.id.action_random_recipe:
+                goToRandomActivity(recipe.id);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

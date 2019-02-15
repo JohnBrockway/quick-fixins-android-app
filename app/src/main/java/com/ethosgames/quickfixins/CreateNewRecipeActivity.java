@@ -87,33 +87,6 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
         ingredientInputsRecyclerView.setAdapter(ingredientInputsAdapter);
     }
 
-    @Override
-    public void goToRandomActivity() {
-        // TODO visually indicate loading before awaiting the request
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String validIDsUrl =
-                getApplicationContext().getString(R.string.backend_base_url) +
-                getApplicationContext().getString(R.string.backend_all_valid_ids_path);
-
-        JsonArrayRequest validIDsRequest = new JsonArrayRequest(validIDsUrl,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        int randomIndex = (int) Math.floor(Math.random() * response.length());
-                        try {
-                            int id = ((JSONObject) response.get(randomIndex)).getInt("ID");
-                            startActivityWithId(id);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {}
-        });
-        queue.add(validIDsRequest);
-    }
-
     public void saveRecipe(View view) {
         try {
             JSONArray ingredientsArray = new JSONArray();

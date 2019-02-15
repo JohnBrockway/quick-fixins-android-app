@@ -99,38 +99,6 @@ public class SavedRecipesListActivity extends BaseToolbarActivity {
         FileInteractor.writeSetToFile(savedRecipeIds, getString(R.string.saved_recipes_file_path), getApplicationContext());
     }
 
-    @Override
-    public void goToRandomActivity() {
-        // TODO visually indicate loading before awaiting the request
-        final Intent intent = new Intent(this, SingleRecipeActivity.class);
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String validIDsUrl =
-                getApplicationContext().getString(R.string.backend_base_url) +
-                        getApplicationContext().getString(R.string.backend_all_valid_ids_path);
-
-        JsonArrayRequest validIDsRequest = new JsonArrayRequest(validIDsUrl,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        int randomIndex = (int) Math.floor(Math.random() * response.length());
-                        try {
-                            int id = ((JSONObject) response.get(randomIndex)).getInt("ID");
-                            intent.putExtra(
-                                    getApplicationContext().getString(R.string.recipe_id_intent_message),
-                                    id);
-                            startActivity(intent);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {}
-        });
-        queue.add(validIDsRequest);
-    }
-
     public void setSingleLayoutVisible(int visibleLayoutId) {
         for (int i = 0 ; i < layouts.length ; i++) {
             if (visibleLayoutId == layouts[i].getId()) {
