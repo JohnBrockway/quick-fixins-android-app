@@ -89,6 +89,8 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                             ingredientsRecyclerView.setLayoutManager(ingredientsLayoutManager);
                             ingredientsAdapter = new IngredientsAdapter(recipe.ingredients);
                             ingredientsRecyclerView.setAdapter(ingredientsAdapter);
+
+                            showRecipeLayout();
                         } catch (Exception e ) {
                             e.printStackTrace();
                         }
@@ -240,5 +242,12 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
         } else {
             saveFab.setImageResource(R.drawable.favorite);
         }
+    }
+
+    private void showRecipeLayout() {
+        findViewById(R.id.loadingRecipeLayout).setVisibility(View.GONE);
+        findViewById(R.id.recipeLayout).setVisibility(View.VISIBLE);
+        findViewById(R.id.fabLike).setVisibility(View.VISIBLE);
+        findViewById(R.id.fabRemix).setVisibility(View.VISIBLE);
     }
 }

@@ -31,63 +31,98 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/page_margin_horizontal_sides"
-            android:layout_marginTop="@dimen/page_margin_vertical_sides"
-            android:layout_marginRight="@dimen/page_margin_horizontal_sides"
-            android:layout_marginBottom="@dimen/page_margin_vertical_sides"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/recipePrimaryImageView"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/recipe_image_height"
-                android:layout_marginBottom="@dimen/recipe_info_elements_margin"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/recipe_image_desc" />
-
-            <TextView
-                android:id="@+id/ingredientsHeading"
+            <LinearLayout
+                android:id="@+id/recipeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/ingredients_heading"
-                android:textColor="@color/colorText"
-                android:textSize="24sp" />
+                android:layout_marginLeft="@dimen/page_margin_horizontal_sides"
+                android:layout_marginTop="@dimen/page_margin_vertical_sides"
+                android:layout_marginRight="@dimen/page_margin_horizontal_sides"
+                android:layout_marginBottom="@dimen/page_margin_vertical_sides"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recipeIngredients"
+                <ImageView
+                    android:id="@+id/recipePrimaryImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/recipe_image_height"
+                    android:layout_marginBottom="@dimen/recipe_info_elements_margin"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/recipe_image_desc" />
+
+                <TextView
+                    android:id="@+id/ingredientsHeading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ingredients_heading"
+                    android:textColor="@color/colorText"
+                    android:textSize="24sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recipeIngredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/recipe_info_elements_margin"
+                    android:layout_marginBottom="@dimen/recipe_info_elements_margin">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/stepsHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/steps_heading"
+                    android:textColor="@color/colorText"
+                    android:textSize="24sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recipeSteps"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/recipe_info_elements_margin"
+                    android:layout_marginBottom="@dimen/recipe_info_elements_margin" />
+
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/rateDialogOpen"
+                    android:layout_width="@dimen/button_width"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_gravity="center"
+                    android:enabled="true"
+                    android:gravity="center|center_horizontal|center_vertical"
+                    android:onClick="openRatingDialog"
+                    android:text="@string/rate_recipe_button_label"
+                    android:translationZ="2dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/loadingRecipeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/recipe_info_elements_margin"
-                android:layout_marginBottom="@dimen/recipe_info_elements_margin">
-
-            </android.support.v7.widget.RecyclerView>
-
-            <TextView
-                android:id="@+id/stepsHeading"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/steps_heading"
-                android:textColor="@color/colorText"
-                android:textSize="24sp" />
+                android:layout_marginTop="@dimen/full_page_icon_top_padding"
+                android:orientation="vertical"
+                android:visibility="visible">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recipeSteps"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/recipe_info_elements_margin"
-                android:layout_marginBottom="@dimen/recipe_info_elements_margin" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/full_page_icon_height"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/menu" />
 
-            <android.support.design.button.MaterialButton
-                android:id="@+id/rateDialogOpen"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:layout_gravity="center"
-                android:enabled="true"
-                android:gravity="center|center_horizontal|center_vertical"
-                android:onClick="openRatingDialog"
-                android:text="@string/rate_recipe_button_label"
-                android:translationZ="2dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/page_margin_horizontal_sides"
+                    android:layout_marginTop="@dimen/full_page_icon_label_top_padding"
+                    android:layout_marginRight="@dimen/page_margin_horizontal_sides"
+                    android:text="@string/loading_recipe"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/full_page_icon_label_size" />
 
+            </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
@@ -101,6 +136,7 @@
         android:onClick="remixRecipe"
         android:theme="@style/SecondaryFAB"
         android:tint="@android:color/black"
+        android:visibility="invisible"
         app:layout_anchor="@+id/fabPlaceholder"
         app:layout_anchorGravity="top"
         app:srcCompat="@drawable/open_in_new" />
@@ -124,6 +160,7 @@
         android:clickable="true"
         android:onClick="toggleSavedStatus"
         android:tint="@color/white"
+        android:visibility="invisible"
         app:layout_anchor="@+id/nestedScrollView"
         app:layout_anchorGravity="end|bottom"
         app:srcCompat="@drawable/favorite" />
