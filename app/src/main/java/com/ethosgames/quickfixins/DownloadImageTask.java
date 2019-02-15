@@ -18,16 +18,16 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     @Override
     protected Bitmap doInBackground(String... urls) {
         String url = urls[0];
-        Bitmap bmp;
+        Bitmap bitmap;
         InputStream in = null;
         try {
             in = new java.net.URL(url).openStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        bmp = BitmapFactory.decodeStream(in);
+        bitmap = BitmapFactory.decodeStream(in);
 
-        return bmp;
+        return bitmap;
     }
 
     @Override

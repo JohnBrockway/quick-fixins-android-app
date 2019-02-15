@@ -30,8 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="setRatingOptionSelected"
+            android:onClick="easeRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
+            android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_very_dissatisfied" />
 
         <ImageButton
@@ -40,8 +41,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="setRatingOptionSelected"
+            android:onClick="easeRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
+            android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_dissatisfied" />
 
         <ImageButton
@@ -50,8 +52,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="setRatingOptionSelected"
+            android:onClick="easeRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
+            android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_neutral" />
 
         <ImageButton
@@ -60,8 +63,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="setRatingOptionSelected"
+            android:onClick="easeRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
+            android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_satisfied" />
 
         <ImageButton
@@ -70,8 +74,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="setRatingOptionSelected"
+            android:onClick="easeRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
+            android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_very_satisfied" />
     </LinearLayout>
 
@@ -97,8 +102,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="setRatingOptionSelected"
+            android:onClick="tasteRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
+            android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_very_dissatisfied" />
 
         <ImageButton
@@ -107,8 +113,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="setRatingOptionSelected"
+            android:onClick="tasteRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
+            android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_dissatisfied" />
 
         <ImageButton
@@ -117,8 +124,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="setRatingOptionSelected"
+            android:onClick="tasteRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
+            android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_neutral" />
 
         <ImageButton
@@ -127,8 +135,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="setRatingOptionSelected"
+            android:onClick="tasteRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
+            android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_satisfied" />
 
         <ImageButton
@@ -137,8 +146,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/white"
-            android:onClick="setRatingOptionSelected"
+            android:onClick="tasteRatingOptionSelected"
             android:padding="@dimen/dialog_inner_padding"
+            android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_very_satisfied" />
 
     </LinearLayout>

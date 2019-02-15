@@ -9,8 +9,20 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class RateRecipeDialogActivity extends AppCompatActivity {
-    private int[] easeButtonIds = new int[5];
-    private int[] tasteButtonIds = new int[5];
+    private int[] easeButtonIds = {
+            R.id.easeRating1,
+            R.id.easeRating2,
+            R.id.easeRating3,
+            R.id.easeRating4,
+            R.id.easeRating5
+    };
+    private int[] tasteButtonIds = {
+            R.id.tasteRating1,
+            R.id.tasteRating2,
+            R.id.tasteRating3,
+            R.id.tasteRating4,
+            R.id.tasteRating5
+    };
 
     private int currentEaseRating = -1;
     private int currentTasteRating = -1;
@@ -19,43 +31,33 @@ public class RateRecipeDialogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate_recipe_dialog);
-        easeButtonIds[0] = R.id.easeRating1;
-        easeButtonIds[1] = R.id.easeRating2;
-        easeButtonIds[2] = R.id.easeRating3;
-        easeButtonIds[3] = R.id.easeRating4;
-        easeButtonIds[4] = R.id.easeRating5;
-        tasteButtonIds[0] = R.id.tasteRating1;
-        tasteButtonIds[1] = R.id.tasteRating2;
-        tasteButtonIds[2] = R.id.tasteRating3;
-        tasteButtonIds[3] = R.id.tasteRating4;
-        tasteButtonIds[4] = R.id.tasteRating5;
     }
 
-    public void setRatingOptionSelected(View view) {
+    public void easeRatingOptionSelected(View view) {
         int id = view.getId();
 
-        boolean isEaseButton = false;
         for (int i = 0 ; i < easeButtonIds.length ; i++) {
+            ImageButton button = findViewById(easeButtonIds[i]);
             if (easeButtonIds[i] == id) {
-                isEaseButton = true;
-                break;
+                currentEaseRating = i + 1;
+                button.setBackground(
+                        getDrawable(R.drawable.background_radial_gradient_accent_white));
+            }
+            else {
+                button.setBackground(new ColorDrawable(getResources().getColor(R.color.white)));
             }
         }
+    }
 
-        int [] ids = isEaseButton ? easeButtonIds : tasteButtonIds;
-        for (int i = 0 ; i < ids.length ; i++) {
-            ImageButton button = findViewById(ids[i]);
-            if (ids[i] == id) {
-                if (isEaseButton) {
-                    currentEaseRating = i + 1;
-                    button.setBackground(
-                            getDrawable(R.drawable.background_radial_gradient_accent_white));
-                }
-                else {
-                    currentTasteRating = i + 1;
-                    button.setBackground(
-                            getDrawable(R.drawable.background_radial_gradient_primary_white));
-                }
+    public void tasteRatingOptionSelected(View view) {
+        int id = view.getId();
+
+        for (int i = 0 ; i < tasteButtonIds.length ; i++) {
+            ImageButton button = findViewById(tasteButtonIds[i]);
+            if (tasteButtonIds[i] == id) {
+                currentTasteRating = i + 1;
+                button.setBackground(
+                        getDrawable(R.drawable.background_radial_gradient_primary_white));
             }
             else {
                 button.setBackground(new ColorDrawable(getResources().getColor(R.color.white)));

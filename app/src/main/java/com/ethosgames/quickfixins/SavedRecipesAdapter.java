@@ -35,7 +35,7 @@ public class SavedRecipesAdapter extends RecyclerView.Adapter<SavedRecipesAdapte
         @Override
         public void onClick(View view) {
             int id = view.getId();
-            int recipeId = data.get(getAdapterPosition()).id;
+            int recipeId = data.get(getAdapterPosition()).getId();
             switch(id) {
                 case R.id.recipeRow:
                     Intent intent = new Intent(view.getContext(), SingleRecipeActivity.class);
@@ -65,7 +65,7 @@ public class SavedRecipesAdapter extends RecyclerView.Adapter<SavedRecipesAdapte
 
     @Override
     public void onBindViewHolder(RecipeViewHolder holder, int position) {
-        holder.recipeNameTextView.setText(data.get(position).name);
+        holder.recipeNameTextView.setText(data.get(position).getName());
     }
 
     @Override

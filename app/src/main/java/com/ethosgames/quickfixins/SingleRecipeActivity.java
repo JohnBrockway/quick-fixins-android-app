@@ -15,11 +15,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,26 +67,26 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                             recipe = new Recipe(response);
                             updateSaveButtonStatus();
                             updateRateButtonStatus();
-                            getSupportActionBar().setTitle(recipe.name);
+                            getSupportActionBar().setTitle(recipe.getName());
 
                             ImageView imageView = findViewById(R.id.recipePrimaryImageView);
-                            if (recipe.imageUrl.equals("null")) {
+                            if (recipe.getImageUrl().equals("null")) {
                                 imageView.setImageDrawable(getDrawable(R.drawable.image_not_found));
                             }
                             else {
-                                new DownloadImageTask(imageView).execute(recipe.imageUrl);
+                                new DownloadImageTask(imageView).execute(recipe.getImageUrl());
                             }
 
                             stepsRecyclerView = findViewById(R.id.recipeSteps);
                             stepsRecyclerView.setHasFixedSize(true);
                             stepsRecyclerView.setLayoutManager(stepsLayoutManager);
-                            stepsAdapter = new StepsAdapter(recipe.steps);
+                            stepsAdapter = new StepsAdapter(recipe.getSteps());
                             stepsRecyclerView.setAdapter(stepsAdapter);
 
                             ingredientsRecyclerView = findViewById(R.id.recipeIngredients);
                             ingredientsRecyclerView.setHasFixedSize(true);
                             ingredientsRecyclerView.setLayoutManager(ingredientsLayoutManager);
-                            ingredientsAdapter = new IngredientsAdapter(recipe.ingredients);
+                            ingredientsAdapter = new IngredientsAdapter(recipe.getIngredients());
                             ingredientsRecyclerView.setAdapter(ingredientsAdapter);
 
                             showRecipeLayout();
@@ -111,10 +109,10 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
     }
 
     public void toggleSavedStatus(View view) {
-        if (savedRecipes.contains(recipe.id)) {
-            savedRecipes.remove(recipe.id);
+        if (savedRecipes.contains(recipe.getId())) {
+            savedRecipes.remove(recipe.getId());
         } else {
-            savedRecipes.add(recipe.id);
+            savedRecipes.add(recipe.getId());
         }
         FileInteractor.writeSetToFile(savedRecipes, getString(R.string.saved_recipes_file_path), getApplicationContext());
         updateSaveButtonStatus();
@@ -122,9 +120,9 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
 
     public void remixRecipe(View view) {
         Intent intent = new Intent(this, CreateNewRecipeActivity.class);
-        intent.putExtra(getString(R.string.recipe_name_intent_message), recipe.name);
-        intent.putExtra(getString(R.string.recipe_ingredients_intent_message), recipe.ingredients);
-        intent.putExtra(getString(R.string.recipe_steps_intent_message), recipe.steps);
+        intent.putExtra(getString(R.string.recipe_name_intent_message), recipe.getName());
+        intent.putExtra(getString(R.string.recipe_ingredients_intent_message), recipe.getIngredients());
+        intent.putExtra(getString(R.string.recipe_steps_intent_message), recipe.getSteps());
         startActivity(intent);
     }
 
@@ -133,7 +131,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
         int id = item.getItemId();
         switch(id) {
             case R.id.action_random_recipe:
-                goToRandomActivity(recipe.id);
+                goToRandomActivity(recipe.getId());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -150,7 +148,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                 if (easeRating >= 1 && easeRating <= 5) {
                     try {
                         JSONObject easeRatingJson = new JSONObject();
-                        easeRatingJson.put("ID", recipe.id);
+                        easeRatingJson.put("ID", recipe.getId());
                         easeRatingJson.put("EaseRating", easeRating);
 
                         String easeUrl = String.format("%s%s",
@@ -167,7 +165,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                 if (tasteRating >= 1 && tasteRating <= 5) {
                     try {
                         JSONObject tasteRatingJson = new JSONObject();
-                        tasteRatingJson.put("ID", recipe.id);
+                        tasteRatingJson.put("ID", recipe.getId());
                         tasteRatingJson.put("TasteRating", tasteRating);
 
                         String tasteUrl = String.format("%s%s",
@@ -181,7 +179,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                     }
                 }
 
-                ratedRecipes.add(recipe.id);
+                ratedRecipes.add(recipe.getId());
                 updateRateButtonStatus();
                 FileInteractor.writeSetToFile(ratedRecipes, getString(R.string.rated_recipes_file_path), getApplicationContext());
             }
@@ -203,7 +201,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
     }
 
     private void updateRateButtonStatus() {
-        if (ratedRecipes.contains(recipe.id)) {
+        if (ratedRecipes.contains(recipe.getId())) {
             Button openRateDialogButton = findViewById(R.id.rateDialogOpen);
             openRateDialogButton.setEnabled(false);
             openRateDialogButton.setText(R.string.already_rated_recipe_button_label);
@@ -213,7 +211,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
     private void updateSaveButtonStatus() {
         FloatingActionButton saveFab = findViewById(R.id.fabLike);
 
-        if (savedRecipes.contains(recipe.id)) {
+        if (savedRecipes.contains(recipe.getId())) {
             saveFab.setImageResource(R.drawable.favorite_border);
         } else {
             saveFab.setImageResource(R.drawable.favorite);

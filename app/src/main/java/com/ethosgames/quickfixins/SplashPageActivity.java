@@ -22,8 +22,8 @@ public class SplashPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_splash_page);
+
         RequestQueue queue = Volley.newRequestQueue(this);
         String upcheckUrl =
                 getApplicationContext().getString(R.string.backend_base_url) +

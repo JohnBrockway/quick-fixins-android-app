@@ -5,25 +5,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Recipe {
-    public int id;
-    public String imageUrl;
-    public String name;
-    public String[] ingredients;
-    public String[] steps;
-    public double easeRating;
-    public int easeRatingCount;
-    public double tasteRating;
-    public int tasteRatingCount;
+    private int id;
+    private String imageUrl;
+    private String name;
+    private String[] ingredients;
+    private String[] steps;
+    private double easeRating;
+    private int easeRatingCount;
+    private double tasteRating;
+    private int tasteRatingCount;
 
     public Recipe(JSONObject jsonObject) {
         try {
             id = jsonObject.getInt("ID");
             imageUrl = jsonObject.getString("ImageUrl");
             name = jsonObject.getString("Name");
-            JSONArray stepsJson = jsonObject.getJSONArray("Steps");
-            steps = convertJsonArrayToStringArray(stepsJson);
-            JSONArray ingredientsJson = jsonObject.getJSONArray("Ingredients");
-            ingredients = convertJsonArrayToStringArray(ingredientsJson);
+            steps = convertJsonArrayToStringArray(jsonObject.getJSONArray("Steps"));
+            ingredients = convertJsonArrayToStringArray(jsonObject.getJSONArray("Ingredients"));
             easeRating = jsonObject.getDouble("EaseRating");
             easeRatingCount = jsonObject.getInt("EaseRatingCount");
             tasteRating = jsonObject.getDouble("TasteRating");
@@ -40,5 +38,41 @@ public class Recipe {
             stringArray[i] = jsonArray.getString(i);
         }
         return stringArray;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String[] getIngredients() {
+        return ingredients;
+    }
+
+    public String[] getSteps() {
+        return steps;
+    }
+
+    public double getEaseRating() {
+        return easeRating;
+    }
+
+    public int getEaseRatingCount() {
+        return easeRatingCount;
+    }
+
+    public double getTasteRating() {
+        return tasteRating;
+    }
+
+    public int getTasteRatingCount() {
+        return tasteRatingCount;
     }
 }

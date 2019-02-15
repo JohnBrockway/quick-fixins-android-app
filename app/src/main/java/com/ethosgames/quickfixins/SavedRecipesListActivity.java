@@ -95,11 +95,10 @@ public class SavedRecipesListActivity extends BaseToolbarActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
         FileInteractor.writeSetToFile(savedRecipeIds, getString(R.string.saved_recipes_file_path), getApplicationContext());
     }
 
-    public void setSingleLayoutVisible(int visibleLayoutId) {
+    private void setSingleLayoutVisible(int visibleLayoutId) {
         for (int i = 0 ; i < layouts.length ; i++) {
             if (visibleLayoutId == layouts[i].getId()) {
                 layouts[i].setVisibility(View.VISIBLE);

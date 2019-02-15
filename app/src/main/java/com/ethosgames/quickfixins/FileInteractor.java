@@ -35,7 +35,8 @@ public class FileInteractor {
             String recipeString = sb.toString();
 
             HashSet<Integer> recipeIds = new HashSet<>();
-            if(recipeString.length() != 0) {
+
+            if (recipeString.length() != 0) {
                 String[] values = recipeString.split(",");
                 for (int i = 0 ; i < values.length ; i++) {
                     recipeIds.add(Integer.parseInt(values[i]));
@@ -76,7 +77,7 @@ public class FileInteractor {
             output.write(recipeString.getBytes());
             output.close();
         }
-        catch (Exception e) {
+        catch (IOException e) {
             e.printStackTrace();
         }
     }

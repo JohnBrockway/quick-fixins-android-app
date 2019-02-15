@@ -21,7 +21,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -153,7 +152,7 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
         }
     }
 
-    public void startActivityWithId(int id) {
+    private void startActivityWithId(int id) {
         final Intent intent = new Intent(this, SingleRecipeActivity.class);
         intent.putExtra(
                 getApplicationContext().getString(R.string.recipe_id_intent_message),
@@ -161,7 +160,7 @@ public class CreateNewRecipeActivity extends BaseToolbarActivity {
         startActivity(intent);
     }
 
-    public void populateArrayListWithArray(ArrayList<String> list, String[] array) {
+    private void populateArrayListWithArray(ArrayList<String> list, String[] array) {
         if (array == null || array.length == 0) {
             list.add("");
         }

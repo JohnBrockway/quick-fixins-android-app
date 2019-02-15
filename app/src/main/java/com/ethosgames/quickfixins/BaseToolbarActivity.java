@@ -41,14 +41,14 @@ public abstract class BaseToolbarActivity extends AppCompatActivity {
         }
     }
 
-    public void goToRandomActivity(final int... idsToAvoid) {
+    protected void goToRandomActivity(final int... idsToAvoid) {
         // TODO visually indicate loading before awaiting the request
         final Intent intent = new Intent(this, SingleRecipeActivity.class);
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String validIDsUrl =
                 getApplicationContext().getString(R.string.backend_base_url) +
-                        getApplicationContext().getString(R.string.backend_all_valid_ids_path);
+                getApplicationContext().getString(R.string.backend_all_valid_ids_path);
 
         JsonArrayRequest validIDsRequest = new JsonArrayRequest(validIDsUrl,
                 new Response.Listener<JSONArray>() {
