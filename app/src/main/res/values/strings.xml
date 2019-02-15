@@ -9,6 +9,7 @@
     <string name="backend_rate_recipe_ease_path">v1/rateRecipeEase</string>
     <string name="backend_rate_recipe_taste_path">v1/rateRecipeTaste</string>
     <string name="backend_insert_recipe_path">/v1/addRecipe</string>
+    <string name="backend_get_multiple_by_id_path">/v1/getRecipesByIds</string>
     <string name="recipe_id_intent_message">com.ethosgames.quickfixins.RECIPE_ID</string>
     <string name="recipe_name_intent_message">com.ethosgames.quickfixins.RECIPE_NAME</string>
     <string name="recipe_ingredients_intent_message">com.ethosgames.quickfixins.RECIPE_INGREDIENTS</string>
@@ -40,4 +41,5 @@
     <string name="save_recipe_button_label">Save recipe</string>
     <string name="save_recipe_disabled_button_label">Adding recipe...</string>
     <string name="recipe_insert_server_failure">Sorry, there was an error saving your recipe</string>
+    <string name="saved_recipe_list_activity_title">My Saved Recipes</string>
 </resources>

@@ -22,7 +22,7 @@ public abstract class BaseToolbarActivity extends AppCompatActivity {
                 startActivity(new Intent(this, CreateNewRecipeActivity.class));
                 return true;
             case R.id.action_saved_recipes:
-
+                startActivity(new Intent(this, SavedRecipesListActivity.class));
                 return true;
             case R.id.action_random_recipe:
                 goToRandomActivity();

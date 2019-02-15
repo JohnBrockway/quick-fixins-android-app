@@ -20,4 +20,6 @@
     <dimen name="circular_button_padding">2dp</dimen>
     <dimen name="recipe_image_height">200dp</dimen>
     <dimen name="add_image_button_padding">50dp</dimen>
+    <dimen name="saved_recipe_list_element_border_width">1dp</dimen>
+    <dimen name="saved_recipe_list_element_padding">10dp</dimen>
 </resources>

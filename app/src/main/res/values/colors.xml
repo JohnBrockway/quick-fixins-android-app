@@ -12,5 +12,7 @@
     <color name="white">#FFFFFF</color>
     <color name="lightGray">#EEEEEE</color>
     <color name="imageButtonBackground">#DDDDDD</color>
+    <color name="favouriteIconFill">#C62828</color>
+    <color name="savedRecipeBorderColor">#3F3F3F</color>
 
 </resources>
