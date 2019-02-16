@@ -171,7 +171,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast.makeText(getApplicationContext(), R.string.recipe_rate_server_failure, Toast.LENGTH_LONG).show();
-                                
+
                                 ratedRecipes.remove(recipe.getId());
                                 updateRateButtonStatus();
                                 FileInteractor.writeSetToFile(ratedRecipes, getString(R.string.rated_recipes_file_path), getApplicationContext());
@@ -188,13 +188,13 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
     }
 
     private void updateRateButtonStatus() {
+        Button openRateDialogButton = findViewById(R.id.rateDialogOpen);
+
         if (ratedRecipes.contains(recipe.getId())) {
-            Button openRateDialogButton = findViewById(R.id.rateDialogOpen);
             openRateDialogButton.setEnabled(false);
             openRateDialogButton.setText(R.string.already_rated_recipe_button_label);
         }
         else {
-            Button openRateDialogButton = findViewById(R.id.rateDialogOpen);
             openRateDialogButton.setEnabled(true);
             openRateDialogButton.setText(R.string.rate_recipe_button_label);
         }
