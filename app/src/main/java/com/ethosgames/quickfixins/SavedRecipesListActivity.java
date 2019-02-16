@@ -1,6 +1,5 @@
 package com.ethosgames.quickfixins;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -79,7 +78,7 @@ public class SavedRecipesListActivity extends BaseToolbarActivity {
                                 recipesRecyclerView.setAdapter(recipesAdapter);
 
                                 setSingleLayoutVisible(R.id.recipeListLayout);
-                            } catch (Exception e) {
+                            } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
