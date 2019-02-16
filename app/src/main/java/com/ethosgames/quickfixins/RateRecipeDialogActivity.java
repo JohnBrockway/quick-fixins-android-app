@@ -6,9 +6,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class RateRecipeDialogActivity extends AppCompatActivity {
+    private Button submitButton;
+
     private int[] easeButtonIds = {
             R.id.easeRating1,
             R.id.easeRating2,
@@ -31,6 +34,8 @@ public class RateRecipeDialogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate_recipe_dialog);
+
+        submitButton = findViewById(R.id.submitRatingButton);
     }
 
     public void easeRatingOptionSelected(View view) {
@@ -47,6 +52,8 @@ public class RateRecipeDialogActivity extends AppCompatActivity {
                 button.setBackground(new ColorDrawable(getResources().getColor(R.color.white)));
             }
         }
+
+        maybeEnableSubmitButton();
     }
 
     public void tasteRatingOptionSelected(View view) {
@@ -63,6 +70,8 @@ public class RateRecipeDialogActivity extends AppCompatActivity {
                 button.setBackground(new ColorDrawable(getResources().getColor(R.color.white)));
             }
         }
+
+        maybeEnableSubmitButton();
     }
 
     public void submitRating(View view) {
@@ -77,5 +86,12 @@ public class RateRecipeDialogActivity extends AppCompatActivity {
         Intent returnIntent = new Intent();
         setResult(Activity.RESULT_CANCELED, returnIntent);
         finish();
+    }
+
+    private void maybeEnableSubmitButton() {
+        if (currentEaseRating > 0 && currentTasteRating > 0) {
+            submitButton.setEnabled(true);
+            submitButton.setTextColor(getColor(R.color.colorAccent));
+        }
     }
 }

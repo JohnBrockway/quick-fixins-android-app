@@ -26,4 +26,6 @@
     <dimen name="full_page_icon_top_padding">125dp</dimen>
     <dimen name="full_page_icon_label_top_padding">40dp</dimen>
     <dimen name="full_page_icon_label_size">18sp</dimen>
+    <dimen name="rate_icon_size">60dp</dimen>
+    <dimen name="rate_icon_padding">12dp</dimen>
 </resources>

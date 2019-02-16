@@ -26,56 +26,61 @@
 
         <ImageButton
             android:id="@+id/easeRating1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/rate_icon_size"
+            android:layout_height="@dimen/rate_icon_size"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:onClick="easeRatingOptionSelected"
-            android:padding="@dimen/dialog_inner_padding"
+            android:padding="@dimen/rate_icon_padding"
+            android:scaleType="fitCenter"
             android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_very_dissatisfied" />
 
         <ImageButton
             android:id="@+id/easeRating2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/rate_icon_size"
+            android:layout_height="@dimen/rate_icon_size"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:onClick="easeRatingOptionSelected"
-            android:padding="@dimen/dialog_inner_padding"
+            android:padding="@dimen/rate_icon_padding"
+            android:scaleType="fitCenter"
             android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_dissatisfied" />
 
         <ImageButton
             android:id="@+id/easeRating3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/rate_icon_size"
+            android:layout_height="@dimen/rate_icon_size"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:onClick="easeRatingOptionSelected"
-            android:padding="@dimen/dialog_inner_padding"
+            android:padding="@dimen/rate_icon_padding"
+            android:scaleType="fitCenter"
             android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_neutral" />
 
         <ImageButton
             android:id="@+id/easeRating4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/rate_icon_size"
+            android:layout_height="@dimen/rate_icon_size"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:onClick="easeRatingOptionSelected"
-            android:padding="@dimen/dialog_inner_padding"
+            android:padding="@dimen/rate_icon_padding"
+            android:scaleType="fitCenter"
             android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_satisfied" />
 
         <ImageButton
             android:id="@+id/easeRating5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/rate_icon_size"
+            android:layout_height="@dimen/rate_icon_size"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:onClick="easeRatingOptionSelected"
-            android:padding="@dimen/dialog_inner_padding"
+            android:padding="@dimen/rate_icon_padding"
+            android:scaleType="fitCenter"
             android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_very_satisfied" />
     </LinearLayout>
@@ -98,56 +103,61 @@
 
         <ImageButton
             android:id="@+id/tasteRating1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/rate_icon_size"
+            android:layout_height="@dimen/rate_icon_size"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:onClick="tasteRatingOptionSelected"
-            android:padding="@dimen/dialog_inner_padding"
+            android:padding="@dimen/rate_icon_padding"
+            android:scaleType="fitCenter"
             android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_very_dissatisfied" />
 
         <ImageButton
             android:id="@+id/tasteRating2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/rate_icon_size"
+            android:layout_height="@dimen/rate_icon_size"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:onClick="tasteRatingOptionSelected"
-            android:padding="@dimen/dialog_inner_padding"
+            android:padding="@dimen/rate_icon_padding"
+            android:scaleType="fitCenter"
             android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_dissatisfied" />
 
         <ImageButton
             android:id="@+id/tasteRating3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/rate_icon_size"
+            android:layout_height="@dimen/rate_icon_size"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:onClick="tasteRatingOptionSelected"
-            android:padding="@dimen/dialog_inner_padding"
+            android:padding="@dimen/rate_icon_padding"
+            android:scaleType="fitCenter"
             android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_neutral" />
 
         <ImageButton
             android:id="@+id/tasteRating4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/rate_icon_size"
+            android:layout_height="@dimen/rate_icon_size"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:onClick="tasteRatingOptionSelected"
-            android:padding="@dimen/dialog_inner_padding"
+            android:padding="@dimen/rate_icon_padding"
+            android:scaleType="fitCenter"
             android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_satisfied" />
 
         <ImageButton
             android:id="@+id/tasteRating5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/rate_icon_size"
+            android:layout_height="@dimen/rate_icon_size"
             android:layout_weight="1"
             android:background="@android:color/white"
             android:onClick="tasteRatingOptionSelected"
-            android:padding="@dimen/dialog_inner_padding"
+            android:padding="@dimen/rate_icon_padding"
+            android:scaleType="fitCenter"
             android:tint="@android:color/black"
             app:srcCompat="@drawable/sentiment_very_satisfied" />
 
@@ -181,12 +191,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/white"
+            android:enabled="false"
             android:onClick="submitRating"
             android:paddingLeft="@dimen/dialog_button_inner_padding"
             android:paddingRight="@dimen/dialog_button_inner_padding"
             android:text="@string/rating_dialog_submit_button_label"
             android:textAlignment="textEnd"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorTextLight"
             android:textSize="14sp" />
     </LinearLayout>
 

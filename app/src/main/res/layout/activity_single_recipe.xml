@@ -135,7 +135,7 @@
         android:clickable="true"
         android:onClick="remixRecipe"
         android:theme="@style/SecondaryFAB"
-        android:tint="@android:color/black"
+        android:tint="@color/colorAccent"
         android:visibility="invisible"
         app:layout_anchor="@+id/fabPlaceholder"
         app:layout_anchorGravity="top"
