@@ -6,8 +6,7 @@
     <string name="backend_all_valid_ids_path">v1/getValidIDs</string>
     <string name="backend_upcheck_path">v1/up</string>
     <string name="backend_get_by_id_path">v1/getRecipeById</string>
-    <string name="backend_rate_recipe_ease_path">v1/rateRecipeEase</string>
-    <string name="backend_rate_recipe_taste_path">v1/rateRecipeTaste</string>
+    <string name="backend_rate_recipe_path">v1/rateRecipe</string>
     <string name="backend_insert_recipe_path">/v1/addRecipe</string>
     <string name="backend_get_multiple_by_id_path">/v1/getRecipesByIds</string>
     <string name="recipe_id_intent_message">com.ethosgames.quickfixins.RECIPE_ID</string>
@@ -45,4 +44,5 @@
     <string name="loading_recipe">Loading next recipe...</string>
     <string name="loading_saved_recipes">Loading your saved recipes...</string>
     <string name="no_saved_recipes">You don\'t have any saved recipes yet!</string>
+    <string name="recipe_rate_server_failure">Sorry, there was an error submitting your rating</string>
 </resources>

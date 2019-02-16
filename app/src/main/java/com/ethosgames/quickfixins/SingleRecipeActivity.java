@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -145,59 +146,45 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                 int easeRating = data.getIntExtra(getString(R.string.ease_rating_intent_tag), -1);
                 int tasteRating = data.getIntExtra(getString(R.string.taste_rating_intent_tag), -1);
 
-                if (easeRating >= 1 && easeRating <= 5) {
+                if (easeRating >= 1 && easeRating <= 5 && tasteRating >= 1 && tasteRating <= 5) {
                     try {
-                        JSONObject easeRatingJson = new JSONObject();
-                        easeRatingJson.put("ID", recipe.getId());
-                        easeRatingJson.put("EaseRating", easeRating);
+                        JSONObject ratingJson = new JSONObject();
+                        ratingJson.put("ID", recipe.getId());
+                        ratingJson.put("EaseRating", easeRating);
+                        ratingJson.put("TasteRating", tasteRating);
 
-                        String easeUrl = String.format("%s%s",
+                        String rateUrl = String.format("%s%s",
                                 getApplicationContext().getString(R.string.backend_base_url),
-                                getApplicationContext().getString(R.string.backend_rate_recipe_ease_path));
+                                getApplicationContext().getString(R.string.backend_rate_recipe_path));
 
-                        sendPostWithJsonObject(easeUrl, easeRatingJson);
+                        ratedRecipes.add(recipe.getId());
+                        updateRateButtonStatus();
+                        FileInteractor.writeSetToFile(ratedRecipes, getString(R.string.rated_recipes_file_path), getApplicationContext());
+
+                        RequestQueue queue = Volley.newRequestQueue(this);
+
+                        JsonObjectRequest rateEaseRequest = new JsonObjectRequest(
+                                Request.Method.POST, rateUrl, ratingJson, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {}
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplicationContext(), R.string.recipe_rate_server_failure, Toast.LENGTH_LONG).show();
+                                
+                                ratedRecipes.remove(recipe.getId());
+                                updateRateButtonStatus();
+                                FileInteractor.writeSetToFile(ratedRecipes, getString(R.string.rated_recipes_file_path), getApplicationContext());
+                            }
+                        });
+                        queue.add(rateEaseRequest);
                     }
                     catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-
-                if (tasteRating >= 1 && tasteRating <= 5) {
-                    try {
-                        JSONObject tasteRatingJson = new JSONObject();
-                        tasteRatingJson.put("ID", recipe.getId());
-                        tasteRatingJson.put("TasteRating", tasteRating);
-
-                        String tasteUrl = String.format("%s%s",
-                                getApplicationContext().getString(R.string.backend_base_url),
-                                getApplicationContext().getString(R.string.backend_rate_recipe_taste_path));
-
-                        sendPostWithJsonObject(tasteUrl, tasteRatingJson);
-                    }
-                    catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                ratedRecipes.add(recipe.getId());
-                updateRateButtonStatus();
-                FileInteractor.writeSetToFile(ratedRecipes, getString(R.string.rated_recipes_file_path), getApplicationContext());
             }
         }
-    }
-
-    private void sendPostWithJsonObject(String url, JSONObject jsonObject) {
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        JsonObjectRequest rateEaseRequest = new JsonObjectRequest(
-                Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {}
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {}
-        });
-        queue.add(rateEaseRequest);
     }
 
     private void updateRateButtonStatus() {
@@ -205,6 +192,11 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
             Button openRateDialogButton = findViewById(R.id.rateDialogOpen);
             openRateDialogButton.setEnabled(false);
             openRateDialogButton.setText(R.string.already_rated_recipe_button_label);
+        }
+        else {
+            Button openRateDialogButton = findViewById(R.id.rateDialogOpen);
+            openRateDialogButton.setEnabled(true);
+            openRateDialogButton.setText(R.string.rate_recipe_button_label);
         }
     }
 
