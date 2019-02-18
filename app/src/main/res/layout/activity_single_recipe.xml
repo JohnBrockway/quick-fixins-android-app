@@ -108,6 +108,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/full_page_icon_height"
+                    android:contentDescription="@string/menu_image_desc"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/menu" />
 
@@ -133,6 +134,7 @@
         android:layout_gravity="top|end"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
+        android:focusable="true"
         android:onClick="remixRecipe"
         android:theme="@style/SecondaryFAB"
         android:tint="@color/colorAccent"
@@ -158,6 +160,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
+        android:focusable="true"
         android:onClick="toggleSavedStatus"
         android:tint="@color/white"
         android:visibility="invisible"

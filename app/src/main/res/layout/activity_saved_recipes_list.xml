@@ -61,6 +61,7 @@ tools:context=".SavedRecipesListActivity">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/full_page_icon_height"
+                android:contentDescription="@string/menu_image_desc"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/menu" />
 
@@ -88,6 +89,7 @@ tools:context=".SavedRecipesListActivity">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/full_page_icon_height"
+                android:contentDescription="@string/empty_plate_image_desc"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/plates" />
 

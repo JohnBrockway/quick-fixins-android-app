@@ -45,6 +45,7 @@ tools:context=".CreateNewRecipeActivity">
             android:layout_marginBottom="@dimen/recipe_info_elements_margin"
             android:adjustViewBounds="true"
             android:backgroundTint="@color/imageButtonBackground"
+            android:contentDescription="@string/add_image_desc"
             android:onClick="chooseImage"
             android:padding="@dimen/add_image_button_padding"
             android:scaleType="fitCenter"

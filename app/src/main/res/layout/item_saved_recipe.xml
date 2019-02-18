@@ -28,6 +28,7 @@
         android:layout_gravity="center"
         android:layout_weight="0"
         android:background="@color/lightGray"
+        android:contentDescription="@string/heart_icon_desc"
         android:padding="@dimen/favourite_icon_padding"
         android:scaleType="fitCenter"
         android:tint="@color/favouriteIconFill"
