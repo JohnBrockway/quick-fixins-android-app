@@ -28,4 +28,6 @@
     <dimen name="full_page_icon_label_size">18sp</dimen>
     <dimen name="rate_icon_size">60dp</dimen>
     <dimen name="rate_icon_padding">12dp</dimen>
+    <dimen name="favourite_icon_size">50dp</dimen>
+    <dimen name="favourite_icon_padding">10dp</dimen>
 </resources>

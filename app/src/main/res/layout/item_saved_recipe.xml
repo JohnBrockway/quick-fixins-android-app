@@ -23,11 +23,12 @@
 
     <ImageButton
         android:id="@+id/unsaveButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/favourite_icon_size"
+        android:layout_height="@dimen/favourite_icon_size"
         android:layout_gravity="center"
         android:layout_weight="0"
-        android:backgroundTint="@color/lightGray"
+        android:background="@color/lightGray"
+        android:padding="@dimen/favourite_icon_padding"
         android:scaleType="fitCenter"
         android:tint="@color/favouriteIconFill"
         app:srcCompat="@drawable/favorite" />

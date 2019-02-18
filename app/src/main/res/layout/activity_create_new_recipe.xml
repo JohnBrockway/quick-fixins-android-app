@@ -55,13 +55,15 @@ tools:context=".CreateNewRecipeActivity">
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/recipe_name_hint_text"
-            android:textColorHint="@color/colorTextLight">
+            android:textColorHint="@color/colorTextLight"
+            android:theme="@style/EditTextTheme">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/recipeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorText" />
+                android:textColor="@color/colorText"
+                android:theme="@style/EditTextTheme" />
 
         </android.support.design.widget.TextInputLayout>
 

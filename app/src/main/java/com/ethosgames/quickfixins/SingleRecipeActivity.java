@@ -163,7 +163,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
 
                         RequestQueue queue = Volley.newRequestQueue(this);
 
-                        JsonObjectRequest rateEaseRequest = new JsonObjectRequest(
+                        JsonObjectRequest rateRequest = new JsonObjectRequest(
                                 Request.Method.POST, rateUrl, ratingJson, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {}
@@ -177,7 +177,7 @@ public class SingleRecipeActivity extends BaseToolbarActivity {
                                 FileInteractor.writeSetToFile(ratedRecipes, getString(R.string.rated_recipes_file_path), getApplicationContext());
                             }
                         });
-                        queue.add(rateEaseRequest);
+                        queue.add(rateRequest);
                     }
                     catch (JSONException e) {
                         e.printStackTrace();
